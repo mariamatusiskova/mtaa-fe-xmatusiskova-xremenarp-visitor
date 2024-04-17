@@ -6,6 +6,9 @@
 - Android (instructions): https://developer.android.com/training/wearables/apps/splash-screen
 - iOS (instructions): https://medium.com/@jpmtech/how-to-build-a-launch-screen-for-ios-268a6a47b3c3
 
+## Login
+> author: Mária Matušisková
+- https://medium.com/@dheerubhadoria/compose-multi-platform-login-screen-android-ios-desktop-app-1df1dd424932
 
 ### Info from Kotlin of generation for cross-platform app:
 
