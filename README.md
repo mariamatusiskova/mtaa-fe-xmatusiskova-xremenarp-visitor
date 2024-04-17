@@ -4,6 +4,7 @@
 ## Splash screen
 > author: Mária Matušisková
 - Android (instructions): https://developer.android.com/training/wearables/apps/splash-screen
+- iOS (instructions): https://medium.com/@jpmtech/how-to-build-a-launch-screen-for-ios-268a6a47b3c3
 
 
 ### Info from Kotlin of generation for cross-platform app:
