@@ -77,4 +77,7 @@ android {
         implementation(libs.androidx.core.splashscreen.v110rc01)
     }
 }
+dependencies {
+    implementation(libs.volley)
+}
 
