@@ -1,5 +1,6 @@
 import androidx.compose.runtime.Composable
-import login.loadLoginScreen
+import authentification.loadLoginScreen
+import authentification.loadSignupScreen
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -8,7 +9,8 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Preview
 fun App() {
 
-    loadLoginScreen()
+    //loadLoginScreen()
+    loadSignupScreen()
 }
 
 

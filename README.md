@@ -8,7 +8,8 @@
 
 ## Login
 > author: Mária Matušisková
-- https://medium.com/@dheerubhadoria/compose-multi-platform-login-screen-android-ios-desktop-app-1df1dd424932
+- how to do login screen? - https://medium.com/@dheerubhadoria/compose-multi-platform-login-screen-android-ios-desktop-app-1df1dd424932
+- how to go to another screen? - https://medium.com/@rahulbigv17/how-to-open-a-new-screen-on-button-clicked-in-jetpack-compose-47c7b39e0e6
 
 ### Info from Kotlin of generation for cross-platform app:
 
