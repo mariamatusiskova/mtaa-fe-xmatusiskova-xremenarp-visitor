@@ -77,4 +77,10 @@ android {
         implementation(libs.androidx.core.splashscreen.v110rc01)
     }
 }
+dependencies {
+    implementation(libs.volley)
+
+    val nav_version = "2.7.6"
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+}
 
