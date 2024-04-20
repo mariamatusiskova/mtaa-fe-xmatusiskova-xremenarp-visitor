@@ -10,39 +10,24 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.Search
-//import androidx.compose.ui.res.stringResource
-//import androidx.navigation.NavHostController
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Call
-import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Menu
@@ -61,16 +46,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import authentification.loadLoginScreen
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import visitor.composeapp.generated.resources.Res
 import visitor.composeapp.generated.resources.logo
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Switch
+import androidx.compose.foundation.shape.RoundedCornerShape
+
+
+
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
@@ -85,12 +74,14 @@ fun menu() {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
+    var darkmode by remember { mutableStateOf(false) }
+    var notifications by remember { mutableStateOf(true) }
 
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(if (darkmode) Color.Black else Color.White)
     ) {
         Column(
             modifier = Modifier
@@ -99,50 +90,59 @@ fun menu() {
             AnimatedVisibility(all_places) {
                 LazyColumn{
                     items(1) {
-                        val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
-                        for (x in cars) {
-                            Spacer(modifier = Modifier.height(10.dp))
+                        Column (modifier = Modifier
+                            .fillMaxSize(),
+                            verticalArrangement = Arrangement.Center){
+                            val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
+                            for (x in cars) {
+                                Spacer(modifier = Modifier.height(10.dp))
 
-                            Button(
-                                onClick = { /* Handle login button click */ },
-                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
-                                shape = RoundedCornerShape(20.dp),
-                                modifier = Modifier
-                                    .size(width = 250.dp,height = 35.dp)
-                                    .align(Alignment.CenterHorizontally)
-                            ) {
-                                Text(
-                                    text = x,
-                                    color = Color(0xFFE4E4E4),
-                                    fontSize = 16.sp,
-                                    fontWeight = FontWeight.Bold
-                                )
+                                Button(
+                                    onClick = { /* Handle login button click */ },
+                                    colors = ButtonDefaults.buttonColors(backgroundColor = if (darkmode) Color.Gray else Color(0xFFA1A556)),
+                                    shape = RoundedCornerShape(20.dp),
+                                    modifier = Modifier
+                                        .size(width = 250.dp,height = 35.dp)
+                                        .align(Alignment.CenterHorizontally)
+                                ) {
+                                    Text(
+                                        text = x,
+                                        color = Color(0xFFE4E4E4),
+                                        fontSize = 16.sp,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
                             }
                         }
+
                     }
                 }
             }
             AnimatedVisibility(favourite_places) {
                 LazyColumn {
                     items(1) {
-                        val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
-                        for (x in cars) {
-                            Spacer(modifier = Modifier.height(10.dp))
+                        Column (modifier = Modifier
+                            .fillMaxSize(),
+                            verticalArrangement = Arrangement.Center) {
+                            val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
+                            for (x in cars) {
+                                Spacer(modifier = Modifier.height(10.dp))
 
-                            Button(
-                                onClick = { /* Handle login button click */ },
-                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
-                                shape = RoundedCornerShape(20.dp),
-                                modifier = Modifier
-                                    .size(width = 250.dp,height = 35.dp)
-                                    .align(Alignment.CenterHorizontally)
-                            ) {
-                                Text(
-                                    text = x,
-                                    color = Color(0xFFE4E4E4),
-                                    fontSize = 16.sp,
-                                    fontWeight = FontWeight.Bold
-                                )
+                                Button(
+                                    onClick = { /* Handle login button click */ },
+                                    colors = ButtonDefaults.buttonColors(backgroundColor = if (darkmode) Color.Gray else Color(0xFFA1A556)),
+                                    shape = RoundedCornerShape(20.dp),
+                                    modifier = Modifier
+                                        .size(width = 250.dp, height = 35.dp)
+                                        .align(Alignment.CenterHorizontally)
+                                ) {
+                                    Text(
+                                        text = x,
+                                        color = Color(0xFFE4E4E4),
+                                        fontSize = 16.sp,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
                             }
                         }
                     }
@@ -151,24 +151,30 @@ fun menu() {
             AnimatedVisibility(gps_places) {
                 LazyColumn {
                     items(1) {
-                        val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
-                        for (x in cars) {
-                            Spacer(modifier = Modifier.height(10.dp))
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize(),
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
+                            for (x in cars) {
+                                Spacer(modifier = Modifier.height(10.dp))
 
-                            Button(
-                                onClick = { /* Handle login button click */ },
-                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
-                                shape = RoundedCornerShape(20.dp),
-                                modifier = Modifier
-                                    .size(width = 250.dp,height = 35.dp)
-                                    .align(Alignment.CenterHorizontally)
-                            ) {
-                                Text(
-                                    text = x,
-                                    color = Color(0xFFE4E4E4),
-                                    fontSize = 16.sp,
-                                    fontWeight = FontWeight.Bold
-                                )
+                                Button(
+                                    onClick = { /* Handle login button click */ },
+                                    colors = ButtonDefaults.buttonColors(backgroundColor = if (darkmode) Color.Gray else Color(0xFFA1A556)),
+                                    shape = RoundedCornerShape(20.dp),
+                                    modifier = Modifier
+                                        .size(width = 250.dp, height = 35.dp)
+                                        .align(Alignment.CenterHorizontally)
+                                ) {
+                                    Text(
+                                        text = x,
+                                        color = Color(0xFFE4E4E4),
+                                        fontSize = 16.sp,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
                             }
                         }
                     }
@@ -178,7 +184,7 @@ fun menu() {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(Color(0xFFA1A556))
+                        .background(if (darkmode) Color.Black else Color(0xFFA1A556))
                 ) {
 
                     Image(
@@ -196,7 +202,7 @@ fun menu() {
                             .fillMaxSize()
                             .padding(top = 300.dp)
                             .background(
-                                color = Color(0xFFBCBE9A),
+                                color = if (darkmode) Color.DarkGray else Color(0xFFBCBE9A),
                                 shape = RoundedCornerShape(topStart = 60.dp, topEnd = 60.dp)
                             ),
                         verticalArrangement = Arrangement.Center
@@ -209,7 +215,7 @@ fun menu() {
                                 Text(
                                     "Username",
                                     style = TextStyle(
-                                        color = Color.Gray,
+                                        color = if (darkmode) Color.White else Color.Gray,
                                         fontWeight = FontWeight.Normal
                                     )
                                 )
@@ -219,11 +225,11 @@ fun menu() {
                                 imeAction = ImeAction.Next
                             ),
                             colors = TextFieldDefaults.textFieldColors(
-                                textColor = Color.DarkGray,
-                                backgroundColor = Color(0xFFBCBE9A),
-                                cursorColor = Color.Gray,
-                                focusedIndicatorColor = Color.Gray,
-                                unfocusedIndicatorColor = Color.Gray
+                                textColor = if (darkmode) Color.White else Color.DarkGray,
+                                backgroundColor = if (darkmode) Color.DarkGray else Color(0xFFBCBE9A),
+                                cursorColor = if (darkmode) Color.White else Color.Gray,
+                                focusedIndicatorColor = if (darkmode) Color.White else Color.Gray,
+                                unfocusedIndicatorColor = if (darkmode) Color.White else Color.Gray
                             ),
                             textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
                             modifier = Modifier
@@ -234,28 +240,27 @@ fun menu() {
                         Spacer(modifier = Modifier.height(16.dp))
 
                         TextField(
-                            value = password,
-                            onValueChange = { password = it },
+                            value = username,
+                            onValueChange = { username = it },
                             label = {
                                 Text(
                                     "Password",
                                     style = TextStyle(
-                                        color = Color.Gray,
-                                        fontWeight = FontWeight.Normal,
+                                        color = if (darkmode) Color.White else Color.Gray,
+                                        fontWeight = FontWeight.Normal
                                     )
                                 )
                             },
-                            visualTransformation = PasswordVisualTransformation(),
                             keyboardOptions = KeyboardOptions(
-                                keyboardType = KeyboardType.Password,
-                                imeAction = ImeAction.Done
+                                keyboardType = KeyboardType.Text,
+                                imeAction = ImeAction.Next
                             ),
                             colors = TextFieldDefaults.textFieldColors(
-                                textColor = Color.DarkGray,
-                                backgroundColor = Color(0xFFBCBE9A),
-                                cursorColor = Color.Gray,
-                                focusedIndicatorColor = Color.Gray,
-                                unfocusedIndicatorColor = Color.Gray
+                                textColor = if (darkmode) Color.White else Color.DarkGray,
+                                backgroundColor = if (darkmode) Color.DarkGray else Color(0xFFBCBE9A),
+                                cursorColor = if (darkmode) Color.White else Color.Gray,
+                                focusedIndicatorColor = if (darkmode) Color.White else Color.Gray,
+                                unfocusedIndicatorColor = if (darkmode) Color.White else Color.Gray
                             ),
                             textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
                             modifier = Modifier
@@ -266,28 +271,27 @@ fun menu() {
                         Spacer(modifier = Modifier.height(16.dp))
 
                         TextField(
-                            value = email,
-                            onValueChange = { email = it },
+                            value = username,
+                            onValueChange = { username = it },
                             label = {
                                 Text(
-                                    "email",
+                                    "Email",
                                     style = TextStyle(
-                                        color = Color.Gray,
-                                        fontWeight = FontWeight.Normal,
+                                        color = if (darkmode) Color.White else Color.Gray,
+                                        fontWeight = FontWeight.Normal
                                     )
                                 )
                             },
-                            visualTransformation = PasswordVisualTransformation(),
                             keyboardOptions = KeyboardOptions(
-                                keyboardType = KeyboardType.Password,
-                                imeAction = ImeAction.Done
+                                keyboardType = KeyboardType.Text,
+                                imeAction = ImeAction.Next
                             ),
                             colors = TextFieldDefaults.textFieldColors(
-                                textColor = Color.DarkGray,
-                                backgroundColor = Color(0xFFBCBE9A),
-                                cursorColor = Color.Gray,
-                                focusedIndicatorColor = Color.Gray,
-                                unfocusedIndicatorColor = Color.Gray
+                                textColor = if (darkmode) Color.White else Color.DarkGray,
+                                backgroundColor = if (darkmode) Color.DarkGray else Color(0xFFBCBE9A),
+                                cursorColor = if (darkmode) Color.White else Color.Gray,
+                                focusedIndicatorColor = if (darkmode) Color.White else Color.Gray,
+                                unfocusedIndicatorColor = if (darkmode) Color.White else Color.Gray
                             ),
                             textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
                             modifier = Modifier
@@ -299,7 +303,7 @@ fun menu() {
 
                         Button(
                             onClick = { /* Handle login button click */ },
-                            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                            colors = ButtonDefaults.buttonColors(backgroundColor = if (darkmode) Color.Gray else Color(0xFFA1A556)),
                             shape = RoundedCornerShape(20.dp),
                             modifier = Modifier
                                 .size(width = 250.dp,height = 35.dp)
@@ -321,6 +325,115 @@ fun menu() {
             }
             AnimatedVisibility(settings) {
 
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(color = if (darkmode) Color.Black else Color(0xFFA1A556))
+                ) {
+                    Text(
+                        "Settings",
+                        style = MaterialTheme.typography.h4,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Start,
+                        fontSize = 40.sp,
+                        color = if (darkmode) Color.White else Color.Black,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 60.dp, start = 30.dp)
+                    )
+
+                    Spacer(modifier = Modifier.height(25.dp))
+
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(top = 300.dp)
+                            .background(
+                                color = if (darkmode) Color.DarkGray else Color(0xFFBCBE9A),
+                                shape = RoundedCornerShape(topStart = 60.dp, topEnd = 60.dp)
+                            ),
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .align(Alignment.CenterHorizontally)
+                        ) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Text(
+                                    text = "Notifications",
+                                    color = Color(0xFFE4E4E4),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    modifier = Modifier.padding(start = 16.dp)
+                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Switch(
+                                    checked = notifications,
+                                    onCheckedChange = { notifications = !notifications },
+                                    modifier = Modifier.align(Alignment.CenterVertically)
+                                )
+                            }
+                        }
+                        Box(
+                            modifier = Modifier
+                                .align(Alignment.CenterHorizontally)
+                        ) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Text(
+                                    text = "Darkmode",
+                                    color = Color(0xFFE4E4E4),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    modifier = Modifier.padding(start = 16.dp)
+                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Switch(
+                                    checked = darkmode,
+                                    onCheckedChange = { darkmode = !darkmode },
+                                    modifier = Modifier.align(Alignment.CenterVertically)
+                                )
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.height(20.dp))
+
+                        Button(
+                            onClick = { /* Handle help and support button click */ },
+                            colors = ButtonDefaults.buttonColors(backgroundColor = if (darkmode) Color.Gray else Color(0xFFA1A556)),
+                            shape = RoundedCornerShape(20.dp),
+                            modifier = Modifier
+                                .size(width = 250.dp, height = 35.dp)
+                                .align(Alignment.CenterHorizontally)
+                        ) {
+                            Text(
+                                text = "Help and support",
+                                color = Color(0xFFE4E4E4),
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(20.dp))
+
+                        Button(
+                            onClick = { /* Handle about button click */ },
+                            colors = ButtonDefaults.buttonColors(backgroundColor = if (darkmode) Color.Gray else Color(0xFFA1A556)),
+                            shape = RoundedCornerShape(20.dp),
+                            modifier = Modifier
+                                .size(width = 250.dp, height = 35.dp)
+                                .align(Alignment.CenterHorizontally)
+                        ) {
+                            Text(
+                                text = "About",
+                                color = Color(0xFFE4E4E4),
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(20.dp))
+                    }
+                }
             }
             AnimatedVisibility(category) {
                 LazyColumn {
@@ -331,7 +444,7 @@ fun menu() {
                         ) {
                             Button(
                                 onClick = { /* Handle login button click */ },
-                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                                colors = ButtonDefaults.buttonColors(backgroundColor = if (darkmode) Color.Gray else Color(0xFFA1A556)),
                                 shape = RoundedCornerShape(20.dp),
                                 modifier = Modifier
                                     .padding(end = 16.dp, bottom = 8.dp)
@@ -345,7 +458,7 @@ fun menu() {
                             }
                             Button(
                                 onClick = { /* Handle login button click */ },
-                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                                colors = ButtonDefaults.buttonColors(backgroundColor = if (darkmode) Color.Gray else Color(0xFFA1A556)),
                                 shape = RoundedCornerShape(20.dp),
                                 modifier = Modifier
                                     .padding(end = 16.dp, bottom = 8.dp)
@@ -359,7 +472,7 @@ fun menu() {
                             }
                             Button(
                                 onClick = { /* Handle login button click */ },
-                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                                colors = ButtonDefaults.buttonColors(backgroundColor = if (darkmode) Color.Gray else Color(0xFFA1A556)),
                                 shape = RoundedCornerShape(20.dp),
                                 modifier = Modifier
                                     .padding(end = 16.dp, bottom = 8.dp)
@@ -373,7 +486,7 @@ fun menu() {
                             }
                             Button(
                                 onClick = { /* Handle login button click */ },
-                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                                colors = ButtonDefaults.buttonColors(backgroundColor = if (darkmode) Color.Gray else Color(0xFFA1A556)),
                                 shape = RoundedCornerShape(20.dp),
                                 modifier = Modifier
                                     .padding(end = 16.dp, bottom = 8.dp)
@@ -387,7 +500,7 @@ fun menu() {
                             }
                             Button(
                                 onClick = { /* Handle login button click */ },
-                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                                colors = ButtonDefaults.buttonColors(backgroundColor = if (darkmode) Color.Gray else Color(0xFFA1A556)),
                                 shape = RoundedCornerShape(20.dp),
                                 modifier = Modifier
                                     .padding(end = 16.dp, bottom = 8.dp)
@@ -401,7 +514,7 @@ fun menu() {
                             }
                             Button(
                                 onClick = { /* Handle login button click */ },
-                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                                colors = ButtonDefaults.buttonColors(backgroundColor = if (darkmode) Color.Gray else Color(0xFFA1A556)),
                                 shape = RoundedCornerShape(20.dp),
                                 modifier = Modifier
                                     .padding(end = 16.dp, bottom = 8.dp)
@@ -493,4 +606,3 @@ fun menu() {
         }
     }
 }
-
