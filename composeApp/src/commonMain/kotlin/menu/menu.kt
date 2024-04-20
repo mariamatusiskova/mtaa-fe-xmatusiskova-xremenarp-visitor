@@ -76,6 +76,11 @@ import visitor.composeapp.generated.resources.logo
 fun menu() {
 
     var all_places by remember { mutableStateOf(true) }
+    var favourite_places by remember { mutableStateOf(false) }
+    var gps_places by remember { mutableStateOf(false) }
+    var edit_profile by remember { mutableStateOf(false) }
+    var settings by remember { mutableStateOf(false) }
+    var category by remember { mutableStateOf(false) }
 
     Box(
         modifier = Modifier
@@ -88,7 +93,103 @@ fun menu() {
         ) {
             AnimatedVisibility(all_places) {
                 LazyColumn {
-                    items(50) {
+                    items(1) {
+                        val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
+                        for (x in cars) {
+                            Button(
+                                onClick = { /* Handle login button click */ },
+                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                                shape = RoundedCornerShape(20.dp),
+                                modifier = Modifier
+                                    .size(width = 250.dp,height = 35.dp)
+                                    .align(Alignment.CenterHorizontally)
+                            ) {
+                                Text(
+                                    text = x,
+                                    color = Color(0xFFE4E4E4),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+            AnimatedVisibility(favourite_places) {
+                LazyColumn {
+                    items(1) {
+                        val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
+                        for (x in cars) {
+                            Button(
+                                onClick = { /* Handle login button click */ },
+                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                                shape = RoundedCornerShape(20.dp),
+                                modifier = Modifier
+                                    .size(width = 250.dp,height = 35.dp)
+                                    .align(Alignment.CenterHorizontally)
+                            ) {
+                                Text(
+                                    text = x,
+                                    color = Color(0xFFE4E4E4),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+            AnimatedVisibility(gps_places) {
+                LazyColumn {
+                    items(1) {
+                        val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
+                        for (x in cars) {
+                            Button(
+                                onClick = { /* Handle login button click */ },
+                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                                shape = RoundedCornerShape(20.dp),
+                                modifier = Modifier
+                                    .size(width = 250.dp,height = 35.dp)
+                                    .align(Alignment.CenterHorizontally)
+                            ) {
+                                Text(
+                                    text = x,
+                                    color = Color(0xFFE4E4E4),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+            AnimatedVisibility(edit_profile) {
+                LazyColumn {
+                    items(1) {
+                        val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
+                        for (x in cars) {
+                            Button(
+                                onClick = { /* Handle login button click */ },
+                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                                shape = RoundedCornerShape(20.dp),
+                                modifier = Modifier
+                                    .size(width = 250.dp,height = 35.dp)
+                                    .align(Alignment.CenterHorizontally)
+                            ) {
+                                Text(
+                                    text = x,
+                                    color = Color(0xFFE4E4E4),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+            AnimatedVisibility(settings) {
+                LazyColumn {
+                    items(1) {
                         Button(
                             onClick = { /* Handle login button click */ },
                             colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
@@ -98,11 +199,106 @@ fun menu() {
                                 .align(Alignment.CenterHorizontally)
                         ) {
                             Text(
-                                text = "Log in",
+                                text = "SETTINGS",
                                 color = Color(0xFFE4E4E4),
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold
                             )
+                        }
+                    }
+                }
+            }
+            AnimatedVisibility(category) {
+                LazyColumn {
+                    items(1) {
+                        Column(
+                            modifier = Modifier.fillMaxSize(),
+                            horizontalAlignment = Alignment.End
+                        ) {
+                            Button(
+                                onClick = { /* Handle login button click */ },
+                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                                shape = RoundedCornerShape(20.dp),
+                                modifier = Modifier
+                                    .padding(end = 16.dp, bottom = 8.dp)
+                            ) {
+                                Text(
+                                    text = "MEALS",
+                                    color = Color(0xFFE4E4E4),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                            Button(
+                                onClick = { /* Handle login button click */ },
+                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                                shape = RoundedCornerShape(20.dp),
+                                modifier = Modifier
+                                    .padding(end = 16.dp, bottom = 8.dp)
+                            ) {
+                                Text(
+                                    text = "ACCOMODATION",
+                                    color = Color(0xFFE4E4E4),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                            Button(
+                                onClick = { /* Handle login button click */ },
+                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                                shape = RoundedCornerShape(20.dp),
+                                modifier = Modifier
+                                    .padding(end = 16.dp, bottom = 8.dp)
+                            ) {
+                                Text(
+                                    text = "SPORT",
+                                    color = Color(0xFFE4E4E4),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                            Button(
+                                onClick = { /* Handle login button click */ },
+                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                                shape = RoundedCornerShape(20.dp),
+                                modifier = Modifier
+                                    .padding(end = 16.dp, bottom = 8.dp)
+                            ) {
+                                Text(
+                                    text = "HIKING",
+                                    color = Color(0xFFE4E4E4),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                            Button(
+                                onClick = { /* Handle login button click */ },
+                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                                shape = RoundedCornerShape(20.dp),
+                                modifier = Modifier
+                                    .padding(end = 16.dp, bottom = 8.dp)
+                            ) {
+                                Text(
+                                    text = "FUN",
+                                    color = Color(0xFFE4E4E4),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                            Button(
+                                onClick = { /* Handle login button click */ },
+                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                                shape = RoundedCornerShape(20.dp),
+                                modifier = Modifier
+                                    .padding(end = 16.dp, bottom = 8.dp)
+                            ) {
+                                Text(
+                                    text = "EVENTS",
+                                    color = Color(0xFFE4E4E4),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
                         }
                     }
                 }
@@ -114,18 +310,38 @@ fun menu() {
         BottomNavigation(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 800.dp), // Adjust as needed
+                .padding(top = 810.dp), // Adjust as needed
             backgroundColor = Color.White
         ) {
             BottomNavigationItem(
+                icon = { Icon(Icons.Filled.Home, contentDescription = "ALL") },
+                selected = false,
+                onClick = { all_places = !all_places
+                    edit_profile = false
+                    gps_places=false
+                    favourite_places=false
+                    category = false
+                    settings = false   }
+            )
+            BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Person, contentDescription = "Person") },
                 selected = false,
-                onClick = { all_places = !all_places }
+                onClick = { edit_profile = !edit_profile
+                            all_places = false
+                            gps_places=false
+                            favourite_places=false
+                            category = false
+                            settings = false   }
             )
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.LocationOn, contentDescription = "Location") },
                 selected = false,
-                onClick = { /* Handle search navigation */ }
+                onClick = { gps_places = !gps_places
+                            all_places = false
+                            edit_profile=false
+                            favourite_places=false
+                            category = false
+                            settings = false  }
             )
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Add, contentDescription = "Add") },
@@ -135,18 +351,34 @@ fun menu() {
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Favorite, contentDescription = "Favorite") },
                 selected = false,
-                onClick = { /* Handle notifications navigation */ }
+                onClick = { favourite_places = !favourite_places
+                            all_places = false
+                            edit_profile=false
+                            gps_places=false
+                            category = false
+                            settings = false  }
             )
             BottomNavigationItem(
-                icon = { Icon(Icons.Filled.Menu, contentDescription = "Menu") },
+                icon = { Icon(Icons.Filled.Menu, contentDescription = "CATEGORY") },
                 selected = false,
-                onClick = { /* Handle notifications navigation */ }
+                onClick = { category = !category
+                            all_places = false
+                            edit_profile=false
+                            gps_places=false
+                            favourite_places = false
+                            settings = false }
             )
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Settings, contentDescription = "Settings") },
                 selected = false,
-                onClick = { /* Handle notifications navigation */ }
+                onClick = { settings = !settings
+                            all_places = false
+                            edit_profile=false
+                            gps_places=false
+                            favourite_places = false
+                            category = false }
             )
         }
     }
 }
+
