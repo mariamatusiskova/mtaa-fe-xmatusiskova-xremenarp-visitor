@@ -443,7 +443,7 @@ fun menu() {
         BottomNavigation(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 810.dp),
+                .align(alignment = Alignment.BottomCenter),
             backgroundColor = Color.White
         ) {
             BottomNavigationItem(
