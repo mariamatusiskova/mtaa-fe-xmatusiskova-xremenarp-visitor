@@ -76,7 +76,6 @@ import visitor.composeapp.generated.resources.logo
 @Composable
 @Preview
 fun menu() {
-
     var all_places by remember { mutableStateOf(true) }
     var favourite_places by remember { mutableStateOf(false) }
     var gps_places by remember { mutableStateOf(false) }
@@ -176,155 +175,128 @@ fun menu() {
                 }
             }
             AnimatedVisibility(edit_profile) {
-                LazyColumn {
-                    items(1) {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .background(Color(0xFFA1A556))
-                        ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color(0xFFA1A556))
+                ) {
 
-                            Image(
-                                modifier = Modifier
-                                    .size(width = 150.dp, height = 150.dp)
-                                    .padding(top = 35.dp)
-                                    .fillMaxSize(1f)
-                                    .align(Alignment.TopCenter),
-                                painter = painterResource(Res.drawable.logo),
-                                contentDescription = "Logo"
-                            )
+                    Image(
+                        modifier = Modifier
+                            .size(width = 150.dp, height = 150.dp)
+                            .padding(top = 35.dp)
+                            .fillMaxSize(1f)
+                            .align(Alignment.TopCenter),
+                        painter = painterResource(Res.drawable.logo),
+                        contentDescription = "Logo"
+                    )
 
-                            Column(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .padding(top = 300.dp)
-                                    .background(
-                                        color = Color(0xFFBCBE9A),
-                                        shape = RoundedCornerShape(topStart = 60.dp, topEnd = 60.dp)
-                                    ),
-                                verticalArrangement = Arrangement.Center
-                            ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(top = 300.dp)
+                            .background(
+                                color = Color(0xFFBCBE9A),
+                                shape = RoundedCornerShape(topStart = 60.dp, topEnd = 60.dp)
+                            ),
+                        verticalArrangement = Arrangement.Center
+                    ) {
 
-                                TextField(
-                                    value = username,
-                                    onValueChange = { username = it },
-                                    label = {
-                                        Text(
-                                            "Username",
-                                            style = TextStyle(
-                                                color = Color.Gray,
-                                                fontWeight = FontWeight.Normal
-                                            )
-                                        )
-                                    },
-                                    keyboardOptions = KeyboardOptions(
-                                        keyboardType = KeyboardType.Text,
-                                        imeAction = ImeAction.Next
-                                    ),
-                                    colors = TextFieldDefaults.textFieldColors(
-                                        textColor = Color.DarkGray,
-                                        backgroundColor = Color(0xFFBCBE9A),
-                                        cursorColor = Color.Gray,
-                                        focusedIndicatorColor = Color.Gray,
-                                        unfocusedIndicatorColor = Color.Gray
-                                    ),
-                                    textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(horizontal = 60.dp)
-                                )
-
-                                Spacer(modifier = Modifier.height(16.dp))
-
-                                TextField(
-                                    value = password,
-                                    onValueChange = { password = it },
-                                    label = {
-                                        Text(
-                                            "Password",
-                                            style = TextStyle(
-                                                color = Color.Gray,
-                                                fontWeight = FontWeight.Normal,
-                                            )
-                                        )
-                                    },
-                                    visualTransformation = PasswordVisualTransformation(),
-                                    keyboardOptions = KeyboardOptions(
-                                        keyboardType = KeyboardType.Password,
-                                        imeAction = ImeAction.Done
-                                    ),
-                                    colors = TextFieldDefaults.textFieldColors(
-                                        textColor = Color.DarkGray,
-                                        backgroundColor = Color(0xFFBCBE9A),
-                                        cursorColor = Color.Gray,
-                                        focusedIndicatorColor = Color.Gray,
-                                        unfocusedIndicatorColor = Color.Gray
-                                    ),
-                                    textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(horizontal = 60.dp)
-                                )
-
-                                Spacer(modifier = Modifier.height(16.dp))
-
-                                TextField(
-                                    value = email,
-                                    onValueChange = { email = it },
-                                    label = {
-                                        Text(
-                                            "email",
-                                            style = TextStyle(
-                                                color = Color.Gray,
-                                                fontWeight = FontWeight.Normal,
-                                            )
-                                        )
-                                    },
-                                    visualTransformation = PasswordVisualTransformation(),
-                                    keyboardOptions = KeyboardOptions(
-                                        keyboardType = KeyboardType.Password,
-                                        imeAction = ImeAction.Done
-                                    ),
-                                    colors = TextFieldDefaults.textFieldColors(
-                                        textColor = Color.DarkGray,
-                                        backgroundColor = Color(0xFFBCBE9A),
-                                        cursorColor = Color.Gray,
-                                        focusedIndicatorColor = Color.Gray,
-                                        unfocusedIndicatorColor = Color.Gray
-                                    ),
-                                    textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(horizontal = 60.dp)
-                                )
-
-                                Spacer(modifier = Modifier.height(40.dp))
-
-                                Button(
-                                    onClick = { /* Handle login button click */ },
-                                    colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
-                                    shape = RoundedCornerShape(20.dp),
-                                    modifier = Modifier
-                                        .size(width = 250.dp,height = 35.dp)
-                                        .align(Alignment.CenterHorizontally)
-                                ) {
-                                    Text(
-                                        text = "Edit profile",
-                                        color = Color(0xFFE4E4E4),
-                                        fontSize = 16.sp,
-                                        fontWeight = FontWeight.Bold
+                        TextField(
+                            value = username,
+                            onValueChange = { username = it },
+                            label = {
+                                Text(
+                                    "Username",
+                                    style = TextStyle(
+                                        color = Color.Gray,
+                                        fontWeight = FontWeight.Normal
                                     )
-                                }
-                                Spacer(modifier = Modifier.height(250.dp))
+                                )
+                            },
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Text,
+                                imeAction = ImeAction.Next
+                            ),
+                            colors = TextFieldDefaults.textFieldColors(
+                                textColor = Color.DarkGray,
+                                backgroundColor = Color(0xFFBCBE9A),
+                                cursorColor = Color.Gray,
+                                focusedIndicatorColor = Color.Gray,
+                                unfocusedIndicatorColor = Color.Gray
+                            ),
+                            textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 60.dp)
+                        )
 
-                            }
-                        }
-                    }
-                }
-            }
-            AnimatedVisibility(settings) {
-                LazyColumn {
-                    items(1) {
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        TextField(
+                            value = password,
+                            onValueChange = { password = it },
+                            label = {
+                                Text(
+                                    "Password",
+                                    style = TextStyle(
+                                        color = Color.Gray,
+                                        fontWeight = FontWeight.Normal,
+                                    )
+                                )
+                            },
+                            visualTransformation = PasswordVisualTransformation(),
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Password,
+                                imeAction = ImeAction.Done
+                            ),
+                            colors = TextFieldDefaults.textFieldColors(
+                                textColor = Color.DarkGray,
+                                backgroundColor = Color(0xFFBCBE9A),
+                                cursorColor = Color.Gray,
+                                focusedIndicatorColor = Color.Gray,
+                                unfocusedIndicatorColor = Color.Gray
+                            ),
+                            textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 60.dp)
+                        )
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        TextField(
+                            value = email,
+                            onValueChange = { email = it },
+                            label = {
+                                Text(
+                                    "email",
+                                    style = TextStyle(
+                                        color = Color.Gray,
+                                        fontWeight = FontWeight.Normal,
+                                    )
+                                )
+                            },
+                            visualTransformation = PasswordVisualTransformation(),
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Password,
+                                imeAction = ImeAction.Done
+                            ),
+                            colors = TextFieldDefaults.textFieldColors(
+                                textColor = Color.DarkGray,
+                                backgroundColor = Color(0xFFBCBE9A),
+                                cursorColor = Color.Gray,
+                                focusedIndicatorColor = Color.Gray,
+                                unfocusedIndicatorColor = Color.Gray
+                            ),
+                            textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 60.dp)
+                        )
+
+                        Spacer(modifier = Modifier.height(40.dp))
+
                         Button(
                             onClick = { /* Handle login button click */ },
                             colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
@@ -334,14 +306,21 @@ fun menu() {
                                 .align(Alignment.CenterHorizontally)
                         ) {
                             Text(
-                                text = "SETTINGS",
+                                text = "Edit profile",
                                 color = Color(0xFFE4E4E4),
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold
                             )
                         }
+                        Spacer(modifier = Modifier.height(250.dp))
+
                     }
                 }
+
+
+            }
+            AnimatedVisibility(settings) {
+
             }
             AnimatedVisibility(category) {
                 LazyColumn {
