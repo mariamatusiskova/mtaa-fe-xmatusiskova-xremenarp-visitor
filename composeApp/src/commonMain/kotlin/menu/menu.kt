@@ -1,6 +1,7 @@
 package menu
 
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.BottomNavigation
@@ -73,6 +74,9 @@ import visitor.composeapp.generated.resources.logo
 @Composable
 @Preview
 fun menu() {
+
+    var all_places by remember { mutableStateOf(true) }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -82,23 +86,24 @@ fun menu() {
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            // Horizontal scrolling space for images
-            LazyColumn {
-                items(50) {
-                    Button(
-                        onClick = { /* Handle login button click */ },
-                        colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
-                        shape = RoundedCornerShape(20.dp),
-                        modifier = Modifier
-                            .size(width = 250.dp,height = 35.dp)
-                            .align(Alignment.CenterHorizontally)
-                    ) {
-                        Text(
-                            text = "Log in",
-                            color = Color(0xFFE4E4E4),
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Bold
-                        )
+            AnimatedVisibility(all_places) {
+                LazyColumn {
+                    items(50) {
+                        Button(
+                            onClick = { /* Handle login button click */ },
+                            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                            shape = RoundedCornerShape(20.dp),
+                            modifier = Modifier
+                                .size(width = 250.dp,height = 35.dp)
+                                .align(Alignment.CenterHorizontally)
+                        ) {
+                            Text(
+                                text = "Log in",
+                                color = Color(0xFFE4E4E4),
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
                     }
                 }
             }
@@ -115,7 +120,7 @@ fun menu() {
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Person, contentDescription = "Person") },
                 selected = false,
-                onClick = { /* Handle home navigation */ }
+                onClick = { all_places = !all_places }
             )
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.LocationOn, contentDescription = "Location") },
