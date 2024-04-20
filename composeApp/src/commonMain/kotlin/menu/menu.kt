@@ -85,6 +85,7 @@ fun menu() {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
+    var darkmode by remember { mutableStateOf(false) }
 
 
     Box(
@@ -99,50 +100,63 @@ fun menu() {
             AnimatedVisibility(all_places) {
                 LazyColumn{
                     items(1) {
-                        val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
-                        for (x in cars) {
-                            Spacer(modifier = Modifier.height(10.dp))
+                        Column (modifier = Modifier
+                            .fillMaxSize(),
+                            verticalArrangement = Arrangement.Center){
+                            val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
+                            for (x in cars) {
+                                Spacer(modifier = Modifier.height(10.dp))
 
-                            Button(
-                                onClick = { /* Handle login button click */ },
-                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
-                                shape = RoundedCornerShape(20.dp),
-                                modifier = Modifier
-                                    .size(width = 250.dp,height = 35.dp)
-                                    .align(Alignment.CenterHorizontally)
-                            ) {
-                                Text(
-                                    text = x,
-                                    color = Color(0xFFE4E4E4),
-                                    fontSize = 16.sp,
-                                    fontWeight = FontWeight.Bold
-                                )
+                                Button(
+                                    onClick = { /* Handle login button click */ },
+                                    colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                                    shape = RoundedCornerShape(20.dp),
+                                    modifier = Modifier
+                                        .size(width = 250.dp,height = 35.dp)
+                                        .align(Alignment.CenterHorizontally)
+                                ) {
+                                    Text(
+                                        text = x,
+                                        color = Color(0xFFE4E4E4),
+                                        fontSize = 16.sp,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
                             }
                         }
+
                     }
                 }
             }
             AnimatedVisibility(favourite_places) {
                 LazyColumn {
                     items(1) {
-                        val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
-                        for (x in cars) {
-                            Spacer(modifier = Modifier.height(10.dp))
+                        Column (modifier = Modifier
+                            .fillMaxSize(),
+                            verticalArrangement = Arrangement.Center) {
+                            val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
+                            for (x in cars) {
+                                Spacer(modifier = Modifier.height(10.dp))
 
-                            Button(
-                                onClick = { /* Handle login button click */ },
-                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
-                                shape = RoundedCornerShape(20.dp),
-                                modifier = Modifier
-                                    .size(width = 250.dp,height = 35.dp)
-                                    .align(Alignment.CenterHorizontally)
-                            ) {
-                                Text(
-                                    text = x,
-                                    color = Color(0xFFE4E4E4),
-                                    fontSize = 16.sp,
-                                    fontWeight = FontWeight.Bold
-                                )
+                                Button(
+                                    onClick = { /* Handle login button click */ },
+                                    colors = ButtonDefaults.buttonColors(
+                                        backgroundColor = Color(
+                                            0xFFA1A556
+                                        )
+                                    ),
+                                    shape = RoundedCornerShape(20.dp),
+                                    modifier = Modifier
+                                        .size(width = 250.dp, height = 35.dp)
+                                        .align(Alignment.CenterHorizontally)
+                                ) {
+                                    Text(
+                                        text = x,
+                                        color = Color(0xFFE4E4E4),
+                                        fontSize = 16.sp,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
                             }
                         }
                     }
@@ -151,24 +165,34 @@ fun menu() {
             AnimatedVisibility(gps_places) {
                 LazyColumn {
                     items(1) {
-                        val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
-                        for (x in cars) {
-                            Spacer(modifier = Modifier.height(10.dp))
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize(),
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
+                            for (x in cars) {
+                                Spacer(modifier = Modifier.height(10.dp))
 
-                            Button(
-                                onClick = { /* Handle login button click */ },
-                                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
-                                shape = RoundedCornerShape(20.dp),
-                                modifier = Modifier
-                                    .size(width = 250.dp,height = 35.dp)
-                                    .align(Alignment.CenterHorizontally)
-                            ) {
-                                Text(
-                                    text = x,
-                                    color = Color(0xFFE4E4E4),
-                                    fontSize = 16.sp,
-                                    fontWeight = FontWeight.Bold
-                                )
+                                Button(
+                                    onClick = { /* Handle login button click */ },
+                                    colors = ButtonDefaults.buttonColors(
+                                        backgroundColor = Color(
+                                            0xFFA1A556
+                                        )
+                                    ),
+                                    shape = RoundedCornerShape(20.dp),
+                                    modifier = Modifier
+                                        .size(width = 250.dp, height = 35.dp)
+                                        .align(Alignment.CenterHorizontally)
+                                ) {
+                                    Text(
+                                        text = x,
+                                        color = Color(0xFFE4E4E4),
+                                        fontSize = 16.sp,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
                             }
                         }
                     }
@@ -320,7 +344,89 @@ fun menu() {
 
             }
             AnimatedVisibility(settings) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color(0xFFA1A556))
+                ) {
 
+                    Text(
+                        "Settings",
+                        style = MaterialTheme.typography.h4,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Start,
+                        fontSize = 40.sp,
+                        color = Color.Black,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 60.dp, start = 30.dp)
+                    )
+
+                    Spacer(modifier = Modifier.height(25.dp))
+
+                    Column (modifier = Modifier
+                        .fillMaxSize()
+                        .padding(top = 300.dp)
+                        .background(
+                            color = Color(0xFFBCBE9A),
+                            shape = RoundedCornerShape(topStart = 60.dp, topEnd = 60.dp)
+                        ),
+                        verticalArrangement = Arrangement.Center){
+                        Button(
+                            onClick = { darkmode = !darkmode },
+                            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                            shape = RoundedCornerShape(20.dp),
+                            modifier = Modifier
+                                .size(width = 250.dp,height = 35.dp)
+                                .align(Alignment.CenterHorizontally)
+                        ) {
+                            Text(
+                                text = "Dark mode",
+                                color = Color(0xFFE4E4E4),
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(20.dp))
+                        Button(
+                            onClick = { /* Handle login button click */ },
+                            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                            shape = RoundedCornerShape(20.dp),
+                            modifier = Modifier
+                                .size(width = 250.dp,height = 35.dp)
+                                .align(Alignment.CenterHorizontally)
+                        ) {
+                            Text(
+                                text = "Help and support",
+                                color = Color(0xFFE4E4E4),
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(20.dp))
+                        Button(
+                            onClick = { /* Handle login button click */ },
+                            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
+                            shape = RoundedCornerShape(20.dp),
+                            modifier = Modifier
+                                .size(width = 250.dp,height = 35.dp)
+                                .align(Alignment.CenterHorizontally)
+                        ) {
+                            Text(
+                                text = "About",
+                                color = Color(0xFFE4E4E4),
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(20.dp))
+                    }
+
+
+
+
+
+                }
             }
             AnimatedVisibility(category) {
                 LazyColumn {
