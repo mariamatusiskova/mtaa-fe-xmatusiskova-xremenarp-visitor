@@ -80,8 +80,5 @@ android {
 dependencies {
     implementation(libs.volley)
     implementation(libs.androidx.activity.ktx)
-
-    val nav_version = "2.7.6"
-    implementation("androidx.navigation:navigation-compose:$nav_version")
 }
 
