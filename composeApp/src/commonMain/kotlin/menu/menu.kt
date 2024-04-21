@@ -76,7 +76,7 @@ import androidx.compose.material.icons.Icons
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview
-fun menu() {
+fun menu_mobile() {
     var all_places by remember { mutableStateOf(true) }
     var favourite_places by remember { mutableStateOf(false) }
     var gps_places by remember { mutableStateOf(false) }
