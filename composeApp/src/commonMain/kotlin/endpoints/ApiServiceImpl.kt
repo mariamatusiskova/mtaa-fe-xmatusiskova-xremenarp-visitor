@@ -13,6 +13,8 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.client.statement.readText
 import io.ktor.http.*
 import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 class ApiServiceImpl(
     private val client: HttpClient
