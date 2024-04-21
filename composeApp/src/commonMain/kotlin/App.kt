@@ -15,7 +15,8 @@ fun App() {
     //loadLoginScreen()
     //loadSignupScreen()
     //loadResetPassword()
-    menu_tablet()
+    menu_mobile()
+    //menu_tablet()
 }
 
 

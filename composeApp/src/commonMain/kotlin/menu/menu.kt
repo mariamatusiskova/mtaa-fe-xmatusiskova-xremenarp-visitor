@@ -2,13 +2,6 @@ package menu
 
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -22,8 +15,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
@@ -36,6 +29,7 @@ import androidx.compose.material.Switch
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
@@ -55,7 +49,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -67,17 +60,17 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import visitor.composeapp.generated.resources.Res
 import visitor.composeapp.generated.resources.logo
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.Switch
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
 
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview
 fun menu_mobile() {
-    var all_places by remember { mutableStateOf(true) }
+
+    var signup by remember { mutableStateOf(false) }
+    var login by remember { mutableStateOf(true) }
+    var reset_password by remember { mutableStateOf(false) }
+    var all_places by remember { mutableStateOf(false) }
     var favourite_places by remember { mutableStateOf(false) }
     var gps_places by remember { mutableStateOf(false) }
     var edit_profile by remember { mutableStateOf(false) }
@@ -100,6 +93,21 @@ fun menu_mobile() {
             modifier = Modifier
                 .fillMaxSize()
         ) {
+            AnimatedVisibility(login) {
+                loadLoginScreen()
+//                onClick = { settings = !settings
+//                    all_places = false
+//                    edit_profile=false
+//                    gps_places=false
+//                    favourite_places = false
+//                    category = false }
+            }
+            AnimatedVisibility(signup) {
+                loadSignupScreen()
+            }
+            AnimatedVisibility(reset_password) {
+                loadResetPassword()
+            }
             AnimatedVisibility(all_places) {
                 LazyColumn{
                     items(1) {
@@ -585,21 +593,21 @@ fun menu_mobile() {
                 icon = { Icon(Icons.Filled.Person, contentDescription = "Person") },
                 selected = false,
                 onClick = { edit_profile = !edit_profile
-                            all_places = false
-                            gps_places=false
-                            favourite_places=false
-                            category = false
-                            settings = false   }
+                    all_places = false
+                    gps_places=false
+                    favourite_places=false
+                    category = false
+                    settings = false   }
             )
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.LocationOn, contentDescription = "Location") },
                 selected = false,
                 onClick = { gps_places = !gps_places
-                            all_places = false
-                            edit_profile=false
-                            favourite_places=false
-                            category = false
-                            settings = false  }
+                    all_places = false
+                    edit_profile=false
+                    favourite_places=false
+                    category = false
+                    settings = false  }
             )
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Add, contentDescription = "Add") },
@@ -610,31 +618,31 @@ fun menu_mobile() {
                 icon = { Icon(Icons.Filled.Favorite, contentDescription = "Favorite") },
                 selected = false,
                 onClick = { favourite_places = !favourite_places
-                            all_places = false
-                            edit_profile=false
-                            gps_places=false
-                            category = false
-                            settings = false  }
+                    all_places = false
+                    edit_profile=false
+                    gps_places=false
+                    category = false
+                    settings = false  }
             )
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Menu, contentDescription = "CATEGORY") },
                 selected = false,
                 onClick = { category = !category
-                            all_places = false
-                            edit_profile=false
-                            gps_places=false
-                            favourite_places = false
-                            settings = false }
+                    all_places = false
+                    edit_profile=false
+                    gps_places=false
+                    favourite_places = false
+                    settings = false }
             )
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Settings, contentDescription = "Settings") },
                 selected = false,
                 onClick = { settings = !settings
-                            all_places = false
-                            edit_profile=false
-                            gps_places=false
-                            favourite_places = false
-                            category = false }
+                    all_places = false
+                    edit_profile=false
+                    gps_places=false
+                    favourite_places = false
+                    category = false }
             )
         }
     }
