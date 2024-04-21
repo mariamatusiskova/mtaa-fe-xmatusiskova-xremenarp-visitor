@@ -68,9 +68,9 @@ import visitor.composeapp.generated.resources.logo
 fun menu_mobile() {
 
     var signup by remember { mutableStateOf(false) }
-    var login by remember { mutableStateOf(true) }
+    var login by remember { mutableStateOf(false) }
     var reset_password by remember { mutableStateOf(false) }
-    var all_places by remember { mutableStateOf(false) }
+    var all_places by remember { mutableStateOf(true) }
     var favourite_places by remember { mutableStateOf(false) }
     var gps_places by remember { mutableStateOf(false) }
     var edit_profile by remember { mutableStateOf(false) }
@@ -337,7 +337,6 @@ fun menu_mobile() {
                                 fontWeight = FontWeight.Bold
                             )
                         }
-                        Spacer(modifier = Modifier.height(250.dp))
                         Button(
                             onClick = { /* Handle login button click */ },
                             colors = ButtonDefaults.buttonColors(backgroundColor = if (darkmode) Color.Gray else Color(0xFFA1A556)),
