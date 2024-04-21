@@ -1,8 +1,8 @@
 package endpoints
 
-import endpoints.dto.DetailResponse
-import endpoints.dto.LoginRequest
-import endpoints.dto.SignupRequest
+import endpoints.dto.responses.DetailResponse
+import endpoints.dto.requests.LoginRequest
+import endpoints.dto.requests.SignupRequest
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.ClientRequestException
