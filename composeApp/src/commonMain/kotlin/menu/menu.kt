@@ -76,6 +76,7 @@ fun menu() {
     var email by remember { mutableStateOf("") }
     var darkmode by remember { mutableStateOf(false) }
     var notifications by remember { mutableStateOf(true) }
+    var lokalization by remember { mutableStateOf(true) }
 
 
     Box(
@@ -202,7 +203,7 @@ fun menu() {
                             .fillMaxSize()
                             .padding(top = 300.dp)
                             .background(
-                                color = if (darkmode) Color.DarkGray else Color(0xFFBCBE9A),
+                                color = if (lokalization) Color.DarkGray else Color(0xFFBCBE9A),
                                 shape = RoundedCornerShape(topStart = 60.dp, topEnd = 60.dp)
                             ),
                         verticalArrangement = Arrangement.Center
@@ -213,7 +214,7 @@ fun menu() {
                             onValueChange = { username = it },
                             label = {
                                 Text(
-                                    "Username",
+                                    if (lokalization) "Prihlasovacie meno" else "Username",
                                     style = TextStyle(
                                         color = if (darkmode) Color.White else Color.Gray,
                                         fontWeight = FontWeight.Normal
@@ -244,7 +245,7 @@ fun menu() {
                             onValueChange = { username = it },
                             label = {
                                 Text(
-                                    "Password",
+                                    if (lokalization) "Heslo" else "Password",
                                     style = TextStyle(
                                         color = if (darkmode) Color.White else Color.Gray,
                                         fontWeight = FontWeight.Normal
@@ -310,7 +311,7 @@ fun menu() {
                                 .align(Alignment.CenterHorizontally)
                         ) {
                             Text(
-                                text = "Edit profile",
+                                text = if (lokalization) "Zmeniť údaje" else "Edit profile",
                                 color = Color(0xFFE4E4E4),
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold
@@ -331,7 +332,7 @@ fun menu() {
                         .background(color = if (darkmode) Color.Black else Color(0xFFA1A556))
                 ) {
                     Text(
-                        "Settings",
+                        if (lokalization) "Nastavenia" else "Settings",
                         style = MaterialTheme.typography.h4,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Start,
@@ -360,7 +361,7 @@ fun menu() {
                         ) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Text(
-                                    text = "Notifications",
+                                    text = if (lokalization) "Notifikácie" else "Notifications",
                                     color = Color(0xFFE4E4E4),
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.Bold,
@@ -380,7 +381,7 @@ fun menu() {
                         ) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Text(
-                                    text = "Darkmode",
+                                    text = if (lokalization) "Tmavý režim" else "Darkmode",
                                     color = Color(0xFFE4E4E4),
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.Bold,
@@ -390,6 +391,26 @@ fun menu() {
                                 Switch(
                                     checked = darkmode,
                                     onCheckedChange = { darkmode = !darkmode },
+                                    modifier = Modifier.align(Alignment.CenterVertically)
+                                )
+                            }
+                        }
+                        Box(
+                            modifier = Modifier
+                                .align(Alignment.CenterHorizontally)
+                        ) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Text(
+                                    text = if (lokalization) "SK" else "EN",
+                                    color = Color(0xFFE4E4E4),
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    modifier = Modifier.padding(start = 16.dp)
+                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Switch(
+                                    checked = lokalization,
+                                    onCheckedChange = { lokalization = !lokalization },
                                     modifier = Modifier.align(Alignment.CenterVertically)
                                 )
                             }
@@ -406,7 +427,7 @@ fun menu() {
                                 .align(Alignment.CenterHorizontally)
                         ) {
                             Text(
-                                text = "Help and support",
+                                text = if (lokalization) "Pomoc a podpora" else "Help and support",
                                 color = Color(0xFFE4E4E4),
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold
@@ -424,7 +445,7 @@ fun menu() {
                                 .align(Alignment.CenterHorizontally)
                         ) {
                             Text(
-                                text = "About",
+                                text = if (lokalization) "O nás" else "About",
                                 color = Color(0xFFE4E4E4),
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold
@@ -450,7 +471,7 @@ fun menu() {
                                     .padding(end = 16.dp, bottom = 8.dp)
                             ) {
                                 Text(
-                                    text = "MEALS",
+                                    text = if (lokalization) "Jedlo" else "MEALS",
                                     color = Color(0xFFE4E4E4),
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.Bold
@@ -464,7 +485,7 @@ fun menu() {
                                     .padding(end = 16.dp, bottom = 8.dp)
                             ) {
                                 Text(
-                                    text = "ACCOMODATION",
+                                    text = if (lokalization) "Ubytovanie" else "ACCOMODATION",
                                     color = Color(0xFFE4E4E4),
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.Bold
@@ -478,7 +499,7 @@ fun menu() {
                                     .padding(end = 16.dp, bottom = 8.dp)
                             ) {
                                 Text(
-                                    text = "SPORT",
+                                    text = if (lokalization) "Šport" else "SPORT",
                                     color = Color(0xFFE4E4E4),
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.Bold
@@ -492,7 +513,7 @@ fun menu() {
                                     .padding(end = 16.dp, bottom = 8.dp)
                             ) {
                                 Text(
-                                    text = "HIKING",
+                                    text = if (lokalization) "Vychádzka" else "HIKING",
                                     color = Color(0xFFE4E4E4),
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.Bold
@@ -506,7 +527,7 @@ fun menu() {
                                     .padding(end = 16.dp, bottom = 8.dp)
                             ) {
                                 Text(
-                                    text = "FUN",
+                                    text = if (lokalization) "Zábava" else "FUN",
                                     color = Color(0xFFE4E4E4),
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.Bold
@@ -520,7 +541,7 @@ fun menu() {
                                     .padding(end = 16.dp, bottom = 8.dp)
                             ) {
                                 Text(
-                                    text = "EVENTS",
+                                    text = if (lokalization) "Udalosti" else "EVENTS",
                                     color = Color(0xFFE4E4E4),
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.Bold
