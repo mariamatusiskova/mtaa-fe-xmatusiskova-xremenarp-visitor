@@ -588,82 +588,79 @@ fun menu_mobile() {
                 }
             }
         }
-        AnimatedVisibility(all_places){
-
-
-            BottomNavigation(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .align(alignment = Alignment.BottomCenter),
-                backgroundColor = Color.White
-            ) {
-                BottomNavigationItem(
-                    icon = { Icon(Icons.Filled.Home, contentDescription = "ALL") },
-                    selected = false,
-                    onClick = { all_places = !all_places
-                        edit_profile = false
-                        gps_places=false
-                        favourite_places=false
-                        category = false
-                        settings = false   }
-                )
-                BottomNavigationItem(
-                    icon = { Icon(Icons.Filled.Person, contentDescription = "Person") },
-                    selected = false,
-                    onClick = { edit_profile = !edit_profile
-                        all_places = false
-                        gps_places=false
-                        favourite_places=false
-                        category = false
-                        settings = false   }
-                )
-                BottomNavigationItem(
-                    icon = { Icon(Icons.Filled.LocationOn, contentDescription = "Location") },
-                    selected = false,
-                    onClick = { gps_places = !gps_places
-                        all_places = false
-                        edit_profile=false
-                        favourite_places=false
-                        category = false
-                        settings = false  }
-                )
-                BottomNavigationItem(
-                    icon = { Icon(Icons.Filled.Add, contentDescription = "Add") },
-                    selected = false,
-                    onClick = { /* Handle notifications navigation */ }
-                )
-                BottomNavigationItem(
-                    icon = { Icon(Icons.Filled.Favorite, contentDescription = "Favorite") },
-                    selected = false,
-                    onClick = { favourite_places = !favourite_places
-                        all_places = false
-                        edit_profile=false
-                        gps_places=false
-                        category = false
-                        settings = false  }
-                )
-                BottomNavigationItem(
-                    icon = { Icon(Icons.Filled.Menu, contentDescription = "CATEGORY") },
-                    selected = false,
-                    onClick = { category = !category
-                        all_places = false
-                        edit_profile=false
-                        gps_places=false
-                        favourite_places = false
-                        settings = false }
-                )
-                BottomNavigationItem(
-                    icon = { Icon(Icons.Filled.Settings, contentDescription = "Settings") },
-                    selected = false,
-                    onClick = { settings = !settings
-                        all_places = false
-                        edit_profile=false
-                        gps_places=false
-                        favourite_places = false
-                        category = false }
-                )
-            }
+        BottomNavigation(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(alignment = Alignment.BottomCenter),
+            backgroundColor = Color.White
+        ) {
+            BottomNavigationItem(
+                icon = { Icon(Icons.Filled.Home, contentDescription = "ALL") },
+                selected = false,
+                onClick = { all_places = !all_places
+                    edit_profile = false
+                    gps_places=false
+                    favourite_places=false
+                    category = false
+                    settings = false   }
+            )
+            BottomNavigationItem(
+                icon = { Icon(Icons.Filled.Person, contentDescription = "Person") },
+                selected = false,
+                onClick = { edit_profile = !edit_profile
+                    all_places = false
+                    gps_places=false
+                    favourite_places=false
+                    category = false
+                    settings = false   }
+            )
+            BottomNavigationItem(
+                icon = { Icon(Icons.Filled.LocationOn, contentDescription = "Location") },
+                selected = false,
+                onClick = { gps_places = !gps_places
+                    all_places = false
+                    edit_profile=false
+                    favourite_places=false
+                    category = false
+                    settings = false  }
+            )
+            BottomNavigationItem(
+                icon = { Icon(Icons.Filled.Add, contentDescription = "Add") },
+                selected = false,
+                onClick = { /* Handle notifications navigation */ }
+            )
+            BottomNavigationItem(
+                icon = { Icon(Icons.Filled.Favorite, contentDescription = "Favorite") },
+                selected = false,
+                onClick = { favourite_places = !favourite_places
+                    all_places = false
+                    edit_profile=false
+                    gps_places=false
+                    category = false
+                    settings = false  }
+            )
+            BottomNavigationItem(
+                icon = { Icon(Icons.Filled.Menu, contentDescription = "CATEGORY") },
+                selected = false,
+                onClick = { category = !category
+                    all_places = false
+                    edit_profile=false
+                    gps_places=false
+                    favourite_places = false
+                    settings = false }
+            )
+            BottomNavigationItem(
+                icon = { Icon(Icons.Filled.Settings, contentDescription = "Settings") },
+                selected = false,
+                onClick = { settings = !settings
+                    all_places = false
+                    edit_profile=false
+                    gps_places=false
+                    favourite_places = false
+                    category = false }
+            )
         }
+
     }
 }
 @OptIn(ExperimentalResourceApi::class)
