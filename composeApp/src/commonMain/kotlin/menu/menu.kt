@@ -52,6 +52,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import authentification.loadLoginScreen
+import authentification.loadResetPassword
+import authentification.loadSignupScreen
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -89,6 +92,21 @@ fun menu() {
             modifier = Modifier
                 .fillMaxSize()
         ) {
+            AnimatedVisibility(login) {
+                loadLoginScreen()
+//                onClick = { settings = !settings
+//                    all_places = false
+//                    edit_profile=false
+//                    gps_places=false
+//                    favourite_places = false
+//                    category = false }
+            }
+            AnimatedVisibility(signup) {
+                loadSignupScreen()
+            }
+            AnimatedVisibility(reset_password) {
+                loadResetPassword()
+            }
             AnimatedVisibility(all_places) {
                 LazyColumn{
                     items(1) {
