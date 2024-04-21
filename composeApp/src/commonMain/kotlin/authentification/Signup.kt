@@ -1,7 +1,5 @@
 package authentification
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,7 +16,6 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.TextField
@@ -41,18 +38,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import endpoints.ApiServiceImpl
-import endpoints.IApiService
-import endpoints.dto.PostRequest
-import endpoints.dto.PostResponse
+import endpoints.dto.SignupRequest
 import getPlatform
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import visitor.composeapp.generated.resources.Res
-import visitor.composeapp.generated.resources.logo
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
@@ -241,13 +231,8 @@ fun loadSignupScreen() {
             Button(
                 onClick = {
                         scope.launch {
-                            var signup = PostRequest(username, email, password, confirm_password)
-                            val response = client.createPost(signup)
-                            signUpMessage = if (response != null) {
-                                "Sign up successful! Response: $response"
-                            } else {
-                                "Sign up failed. Please try again. Response: $response"
-                            }
+                            var signup = SignupRequest(username, email, password, confirm_password)
+                            client.postSignup(signup)
                         }
                   },
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
@@ -290,17 +275,6 @@ fun loadSignupScreen() {
                     .align(Alignment.End)
                     .padding(end = 30.dp)
             )
-
-            // Show message after sign-up
-            if (signUpMessage.isNotBlank()) {
-                Text(
-                    text = signUpMessage,
-                    color = Color.Black,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(top = 16.dp)
-                )
-            }
 
         }
     }

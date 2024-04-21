@@ -3,6 +3,6 @@ package endpoints.dto
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PostResponse(
+data class DetailResponse(
     val detail: String
 )

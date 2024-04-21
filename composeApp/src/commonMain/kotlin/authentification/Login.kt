@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,6 +39,9 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import endpoints.dto.LoginRequest
+import getPlatform
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -48,6 +52,10 @@ import visitor.composeapp.generated.resources.logo
 @Composable
 @Preview
 fun loadLoginScreen() {
+
+    val scope = rememberCoroutineScope()
+    val platform = getPlatform()
+    val client = platform.create()
 
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -143,7 +151,12 @@ fun loadLoginScreen() {
             Spacer(modifier = Modifier.height(40.dp))
 
             Button(
-                onClick = { /* Handle login button click */ },
+                onClick = {
+                    scope.launch {
+                        var login = LoginRequest(username, password)
+                        client.postLogin(login)
+                    }
+                },
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier
@@ -174,7 +187,6 @@ fun loadLoginScreen() {
 
             OutlinedButton(
                 onClick = {},
-//                onClick = { navController.navigate(Route.Signup.route) },
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),
                 border = BorderStroke(2.dp, Color(0xFFA1A556)),
                 shape = RoundedCornerShape(20.dp),

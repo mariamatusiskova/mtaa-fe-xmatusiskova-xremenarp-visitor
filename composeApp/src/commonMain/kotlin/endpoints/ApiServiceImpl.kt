@@ -1,59 +1,35 @@
 package endpoints
 
-import endpoints.dto.PostRequest
-import endpoints.dto.PostResponse
-import io.ktor.client.*
+import endpoints.dto.DetailResponse
+import endpoints.dto.LoginRequest
+import endpoints.dto.SignupRequest
+import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.RedirectResponseException
 import io.ktor.client.plugins.ServerResponseException
-import io.ktor.client.request.*
+import io.ktor.client.request.get
+import io.ktor.client.request.post
+import io.ktor.client.request.setBody
 import io.ktor.client.statement.HttpResponse
-import io.ktor.client.statement.bodyAsText
-import io.ktor.client.statement.readText
-import io.ktor.http.*
+import io.ktor.http.ContentType
+import io.ktor.http.contentType
 import kotlinx.coroutines.runBlocking
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 
 class ApiServiceImpl(
     private val client: HttpClient
 ) : IApiService {
-    override suspend fun getPosts(): List<PostResponse> {
-        return try {
-            client.get(HttpRoutes.POSTS).body()
-        } catch (e: RedirectResponseException) {
-            println("Error: ${e.response.status.description}")
-            emptyList()
-        } catch (e: ClientRequestException) {
-            println("Error: ${e.response.status.description}")
-            emptyList()
-        } catch (e: ServerResponseException) {
-            println("Error: ${e.response.status.description}")
-            emptyList()
-        } catch (e: Exception) {
-            println("Error: ${e.message}")
-            emptyList()
-        }
-    }
 
-    override suspend fun createPost(postRequest: PostRequest): PostResponse? {
+    override suspend fun postSignup(signupRequest: SignupRequest): DetailResponse? {
         return try {
             runBlocking {
-                val response: HttpResponse = client.post(HttpRoutes.POSTS) {
+                val response: HttpResponse = client.post(HttpRoutes.SIGNUP_POST) {
                     contentType(ContentType.Application.Json)
-                    setBody(postRequest)
+                    setBody(signupRequest)
                 }
-                val responseBody: String = response.bodyAsText()
 
-                // Close the client here after receiving the response
                 client.close()
-
-
-                println("Response: $responseBody")
-
-                // Return the response body
-                response.body<PostResponse>()
+                response.body<DetailResponse>()
             }
 
         } catch (e: RedirectResponseException) {
@@ -68,6 +44,50 @@ class ApiServiceImpl(
         } catch (e: Exception) {
             println("Error: ${e.message}")
             null
+        }
+    }
+
+    override suspend fun postLogin(loginRequest: LoginRequest): DetailResponse? {
+        return try {
+            runBlocking {
+                val response: HttpResponse = client.post(HttpRoutes.LOGIN_POST) {
+                    contentType(ContentType.Application.Json)
+                    setBody(loginRequest)
+                }
+
+                client.close()
+                response.body<DetailResponse>()
+            }
+        } catch (e: RedirectResponseException) {
+            println("Error: ${e.response.status.description}")
+            null
+        } catch (e: ClientRequestException) {
+            println("Error: ${e.response.status.description}")
+            null
+        } catch (e: ServerResponseException) {
+            println("Error: ${e.response.status.description}")
+            null
+        } catch (e: Exception) {
+            println("Error: ${e.message}")
+            null
+        }
+    }
+
+    override suspend fun getPosts(): List<DetailResponse> {
+        return try {
+            client.get(HttpRoutes.SIGNUP_POST).body()
+        } catch (e: RedirectResponseException) {
+            println("Error: ${e.response.status.description}")
+            emptyList()
+        } catch (e: ClientRequestException) {
+            println("Error: ${e.response.status.description}")
+            emptyList()
+        } catch (e: ServerResponseException) {
+            println("Error: ${e.response.status.description}")
+            emptyList()
+        } catch (e: Exception) {
+            println("Error: ${e.message}")
+            emptyList()
         }
     }
 }
