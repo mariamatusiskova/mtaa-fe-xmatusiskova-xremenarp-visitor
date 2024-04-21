@@ -47,6 +47,7 @@ import endpoints.dto.PostRequest
 import endpoints.dto.PostResponse
 import getPlatform
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -61,15 +62,12 @@ fun loadSignupScreen() {
     val scope = rememberCoroutineScope()
     val platform = getPlatform()
     val client = platform.create()
-    var showLoading by remember { mutableStateOf(false) }
 
     var username by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirm_password by remember { mutableStateOf("") }
     var signUpMessage by remember { mutableStateOf("") }
-
-    var signup = PostRequest(username, email, password, confirm_password)
 
     Box(
         modifier = Modifier
@@ -241,14 +239,17 @@ fun loadSignupScreen() {
             Spacer(modifier = Modifier.height(40.dp))
 
             Button(
-                onClick = {scope.launch {
-                    val response = client.createPost(signup)
-                    signUpMessage = if (response != null) {
-                        "Sign up successful! Response: $response"
-                    } else {
-                        "Sign up failed. Please try again. Response: $response"
-                    }
-                } },
+                onClick = {
+                        scope.launch {
+                            var signup = PostRequest(username, email, password, confirm_password)
+                            val response = client.createPost(signup)
+                            signUpMessage = if (response != null) {
+                                "Sign up successful! Response: $response"
+                            } else {
+                                "Sign up failed. Please try again. Response: $response"
+                            }
+                        }
+                  },
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier
@@ -303,4 +304,6 @@ fun loadSignupScreen() {
 
         }
     }
+
+//    client.close()
 }
