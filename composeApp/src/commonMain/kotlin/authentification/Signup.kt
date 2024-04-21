@@ -27,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,6 +41,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import endpoints.ApiServiceImpl
+import endpoints.IApiService
+import endpoints.dto.PostRequest
+import endpoints.dto.PostResponse
+import getPlatform
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -51,10 +58,18 @@ import visitor.composeapp.generated.resources.logo
 @Preview
 fun loadSignupScreen() {
 
+    val scope = rememberCoroutineScope()
+    val platform = getPlatform()
+    val client = platform.create()
+    var showLoading by remember { mutableStateOf(false) }
+
     var username by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirm_password by remember { mutableStateOf("") }
+    var signUpMessage by remember { mutableStateOf("") }
+
+    var signup = PostRequest(username, email, password, confirm_password)
 
     Box(
         modifier = Modifier
@@ -226,7 +241,14 @@ fun loadSignupScreen() {
             Spacer(modifier = Modifier.height(40.dp))
 
             Button(
-                onClick = { /* Handle login button click */ },
+                onClick = {scope.launch {
+                    val response = client.createPost(signup)
+                    signUpMessage = if (response != null) {
+                        "Sign up successful! Response: $response"
+                    } else {
+                        "Sign up failed. Please try again. Response: $response"
+                    }
+                } },
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier
@@ -242,23 +264,6 @@ fun loadSignupScreen() {
             }
 
             Spacer(modifier = Modifier.height(15.dp))
-
-//            OutlinedButton(
-//                onClick = {},
-////                onClick = { navController.navigate(Route.Signup.route) },
-//                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),
-//                border = BorderStroke(2.dp, Color(0xFFA1A556)),
-//                shape = RoundedCornerShape(20.dp),
-//                modifier = Modifier
-//                    .align(Alignment.End)
-//            ) {
-//                Text(
-//                    text = "Sign in",
-//                    color = Color(0xFFA1A556),
-//                    fontSize = 16.sp,
-//                    fontWeight = FontWeight.Bold
-//                )
-//            }
 
             TextButton(
                 onClick = { /* Handle login button click */ },
@@ -284,6 +289,17 @@ fun loadSignupScreen() {
                     .align(Alignment.End)
                     .padding(end = 30.dp)
             )
+
+            // Show message after sign-up
+            if (signUpMessage.isNotBlank()) {
+                Text(
+                    text = signUpMessage,
+                    color = Color.Black,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(top = 16.dp)
+                )
+            }
 
         }
     }

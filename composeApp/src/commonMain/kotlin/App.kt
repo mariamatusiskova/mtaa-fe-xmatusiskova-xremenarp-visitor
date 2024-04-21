@@ -12,9 +12,9 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun App() {
 
     //loadLoginScreen()
-    //loadSignupScreen()
+    loadSignupScreen()
     //loadResetPassword()
-    menu()
+   // menu()
 }
 
 
