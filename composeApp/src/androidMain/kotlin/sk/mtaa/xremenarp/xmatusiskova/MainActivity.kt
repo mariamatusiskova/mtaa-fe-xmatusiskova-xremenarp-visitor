@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             App(context = applicationContext,screenWidth)
         }
-        showNotification(applicationContext, "Version",if (screenWidth<1500) "Mobile version is on" else "Tablet version is on")
+        showNotification(applicationContext, "Version",if (screenWidth<1500) "Mobile version is on" else "Tablet version is on",1)
     }
     private fun getScreenWidth(): Int {
         val displayMetrics = DisplayMetrics()

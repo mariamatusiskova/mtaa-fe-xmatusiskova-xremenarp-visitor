@@ -8,10 +8,9 @@ import androidx.core.app.NotificationCompat
 import android.os.Handler
 import android.os.Looper
 
-fun showNotification(context: Context, title: String,message: String) {
-    val channelId = "default_channel_id"
-    val channelName = "Default Channel"
-    val notificationId = 1
+fun showNotification(context: Context, title: String,message: String, id: Int) {
+    val channelId = "visitor"
+    val channelName = "Visitor"
 
     val builder = NotificationCompat.Builder(context, channelId)
         .setSmallIcon(R.drawable.logo)
@@ -21,24 +20,25 @@ fun showNotification(context: Context, title: String,message: String) {
 
     val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-    // Create a notification channel
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         val channel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT)
         notificationManager.createNotificationChannel(channel)
     }
-    notificationManager.notify(notificationId, builder.build())
+    notificationManager.notify(id, builder.build())
     scheduleNotifications(context)
 }
 
 fun scheduleNotifications(context: Context) {
+    var id = 2
     val handler = Handler(Looper.getMainLooper())
-    val delayMillis = 10000L
+    val delay = 10000L
     val notificationRunnable = object : Runnable {
         override fun run() {
-            showNotification(context, "10 sec nothification","10")
-            handler.postDelayed(this, delayMillis)
+            id++
+            showNotification(context, "10 sec nothification","10",id)
+            handler.postDelayed(this, delay)
         }
     }
-    handler.postDelayed(notificationRunnable, delayMillis)
+    handler.postDelayed(notificationRunnable, delay)
 }
 
