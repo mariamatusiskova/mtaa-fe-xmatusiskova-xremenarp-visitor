@@ -20,8 +20,12 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.contentType
+import io.ktor.http.isSuccess
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.decodeFromJsonElement
+import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.jsonObject
 
 class ApiServiceImpl(
     private val client: HttpClient
@@ -86,19 +90,34 @@ class ApiServiceImpl(
 
     override suspend fun apiGetAllPlaces(tokenManager: TokenManager): List<GetAllPlacesResponse> {
         return try {
-
             runBlocking {
-                val response: HttpResponse = client.get(HttpRoutes.API_GET_ALL_PLACES) {
-
+                val response: HttpResponse = client.get(HttpRoutes.SERVER_GET_ALL_PLACES) {
                     val token = tokenManager.getJwtToken()
-
                     if (!token.isNullOrBlank()) {
                         header(HttpHeaders.Authorization, "Bearer $token")
                     }
                 }
 
                 client.close()
-                response.body() ?: emptyList()
+
+                if (response.status.isSuccess()) {
+                    val json = response.bodyAsText()
+                    val jsonTree = Json.parseToJsonElement(json)
+                    val itemsArray = jsonTree.jsonObject["items"]?.jsonArray
+
+                    if (itemsArray != null) {
+                        val placesList = mutableListOf<GetAllPlacesResponse>()
+                        for (item in itemsArray) {
+                            val place = Json.decodeFromJsonElement<GetAllPlacesResponse>(item)
+                            placesList.add(place)
+                        }
+                        placesList
+                    } else {
+                        emptyList()
+                    }
+                } else {
+                    emptyList()
+                }
             }
         } catch (e: RedirectResponseException) {
             println("Error: ${e.response.status.description}")
@@ -113,5 +132,51 @@ class ApiServiceImpl(
             println("Error: ${e.message}")
             emptyList()
         }
+//
+//            runBlocking {
+//                val response: HttpResponse = client.get(HttpRoutes.SERVER_GET_ALL_PLACES) {
+//
+//                    val token = tokenManager.getJwtToken()
+//
+//                    if (!token.isNullOrBlank()) {
+//                        header(HttpHeaders.Authorization, "Bearer $token")
+//                    }
+//                }
+//
+//                client.close()
+//
+//                if (response.status.isSuccess()) {
+//                    val json = response.bodyAsText()
+//                    val jsonTree = Json.parseToJsonElement(json)
+//                    val itemsArray = jsonTree.jsonObject["items"]?.jsonArray
+//
+//                    if (itemsArray != null) {
+//                        val placesList = mutableListOf<GetAllPlacesResponse>()
+//                        for (item in itemsArray) {
+//                            val place = Json.decodeFromJsonElement<GetAllPlacesResponse>(item)
+//                            placesList.add(place)
+//                        }
+//                        placesList
+//                    } else {
+//                        emptyList()
+//                    }
+//                } else {
+//                    emptyList()
+//                }
+//            }
+//        } catch (e: RedirectResponseException) {
+//            println("Error: ${e.response.status.description}")
+//            emptyList()
+//        } catch (e: ClientRequestException) {
+//            println("Error: ${e.response.status.description}")
+//            emptyList()
+//        } catch (e: ServerResponseException) {
+//            println("Error: ${e.response.status.description}")
+//            emptyList()
+//        } catch (e: Exception) {
+//            println("Error: ${e.message}")
+//            emptyList()
+            //       }
+
     }
 }

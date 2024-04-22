@@ -20,15 +20,17 @@ class GetAllPlacesResponse (
     @SerialName("gps")
     val gps: String,
     @SerialName("meals")
-    val meals: Boolean,
-    @SerialName("accommodation")
-    val accommodation: Boolean,
+    val meals: String,
+    @SerialName("accomodation")
+    val accommodation: String,
     @SerialName("sport")
-    val sport: Boolean,
+    val sport: String,
     @SerialName("hiking")
-    val hiking: Boolean,
+    val hiking: String,
     @SerialName("fun")
-    val fun_fun: Boolean,
+    val fun_fun: String,
     @SerialName("events")
-    val events: Boolean
+    val events: String,
+    @SerialName("image_data")
+    val image_data: String?
 )

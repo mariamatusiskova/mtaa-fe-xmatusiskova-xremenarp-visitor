@@ -65,7 +65,7 @@ fun menu_mobile(context: Any?) {
                 loadResetPassword()
             }
             AnimatedVisibility(navigationState.allPlaces) {
-                loadMobileAllPlaces()
+                loadMobileAllPlaces(context)
             }
             AnimatedVisibility(navigationState.favouritePlaces) {
                 loadMobileFavouritePlaces()
