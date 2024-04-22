@@ -177,6 +177,8 @@ class ApiServiceImpl(
                 }
 
                 client.close()
+
+                tokenManager.clearJwtToken()
                 response.body<DetailResponse>()
             }
 
