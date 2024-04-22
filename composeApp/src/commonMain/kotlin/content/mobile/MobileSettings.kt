@@ -58,7 +58,7 @@ fun loadMobileSettings(context: Any?) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 300.dp)
+                .padding(top = 200.dp)
                 .background(
                     color = if (navigationState.darkmode) Color.DarkGray else Color(0xFFBCBE9A),
                     shape = RoundedCornerShape(topStart = 60.dp, topEnd = 60.dp)
@@ -164,14 +164,21 @@ fun loadMobileSettings(context: Any?) {
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            Spacer(modifier = Modifier.height(20.dp))
-
             Button(
                 onClick = {
                     val tokenManager = context?.let { TokenManagerProvider.provideTokenManager(it) }
                     if (tokenManager != null) {
                         tokenManager.clearJwtToken()
                     }
+                    navigationState.settings = false
+                    navigationState.allPlaces = false
+                    navigationState.editProfile = false
+                    navigationState.gpsPlaces = false
+                    navigationState.favouritePlaces = false
+                    navigationState.category = false
+                    navigationState.resetPassword = false
+                    navigationState.signup = false
+                    navigationState.login = true
                 },
                 colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
                 shape = RoundedCornerShape(20.dp),
@@ -186,6 +193,8 @@ fun loadMobileSettings(context: Any?) {
                     fontWeight = FontWeight.Bold
                 )
             }
+
+            Spacer(modifier = Modifier.height(20.dp))
         }
     }
 }
