@@ -1,8 +1,10 @@
 package endpoints
 
+import TokenManager
 import endpoints.dto.requests.LoginRequest
 import endpoints.dto.requests.SignupRequest
 import endpoints.dto.responses.DetailResponse
+import endpoints.dto.responses.GetAllPlacesResponse
 import endpoints.dto.responses.LoginResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -10,14 +12,20 @@ import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.RedirectResponseException
 import io.ktor.client.plugins.ServerResponseException
 import io.ktor.client.request.get
+import io.ktor.client.request.header
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
+import io.ktor.http.HttpHeaders
 import io.ktor.http.contentType
+import io.ktor.http.isSuccess
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.decodeFromJsonElement
+import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.jsonObject
 
 class ApiServiceImpl(
     private val client: HttpClient
@@ -80,9 +88,37 @@ class ApiServiceImpl(
         }
     }
 
-    override suspend fun getPosts(): List<DetailResponse> {
+    override suspend fun apiGetAllPlaces(tokenManager: TokenManager): List<GetAllPlacesResponse> {
         return try {
-            client.get(HttpRoutes.SIGNUP_POST).body()
+            runBlocking {
+                val response: HttpResponse = client.get(HttpRoutes.SERVER_GET_ALL_PLACES) {
+                    val token = tokenManager.getJwtToken()
+                    if (!token.isNullOrBlank()) {
+                        header(HttpHeaders.Authorization, "Bearer $token")
+                    }
+                }
+
+                client.close()
+
+                if (response.status.isSuccess()) {
+                    val json = response.bodyAsText()
+                    val jsonTree = Json.parseToJsonElement(json)
+                    val itemsArray = jsonTree.jsonObject["items"]?.jsonArray
+
+                    if (itemsArray != null) {
+                        val placesList = mutableListOf<GetAllPlacesResponse>()
+                        for (item in itemsArray) {
+                            val place = Json.decodeFromJsonElement<GetAllPlacesResponse>(item)
+                            placesList.add(place)
+                        }
+                        placesList
+                    } else {
+                        emptyList()
+                    }
+                } else {
+                    emptyList()
+                }
+            }
         } catch (e: RedirectResponseException) {
             println("Error: ${e.response.status.description}")
             emptyList()
@@ -96,5 +132,51 @@ class ApiServiceImpl(
             println("Error: ${e.message}")
             emptyList()
         }
+//
+//            runBlocking {
+//                val response: HttpResponse = client.get(HttpRoutes.SERVER_GET_ALL_PLACES) {
+//
+//                    val token = tokenManager.getJwtToken()
+//
+//                    if (!token.isNullOrBlank()) {
+//                        header(HttpHeaders.Authorization, "Bearer $token")
+//                    }
+//                }
+//
+//                client.close()
+//
+//                if (response.status.isSuccess()) {
+//                    val json = response.bodyAsText()
+//                    val jsonTree = Json.parseToJsonElement(json)
+//                    val itemsArray = jsonTree.jsonObject["items"]?.jsonArray
+//
+//                    if (itemsArray != null) {
+//                        val placesList = mutableListOf<GetAllPlacesResponse>()
+//                        for (item in itemsArray) {
+//                            val place = Json.decodeFromJsonElement<GetAllPlacesResponse>(item)
+//                            placesList.add(place)
+//                        }
+//                        placesList
+//                    } else {
+//                        emptyList()
+//                    }
+//                } else {
+//                    emptyList()
+//                }
+//            }
+//        } catch (e: RedirectResponseException) {
+//            println("Error: ${e.response.status.description}")
+//            emptyList()
+//        } catch (e: ClientRequestException) {
+//            println("Error: ${e.response.status.description}")
+//            emptyList()
+//        } catch (e: ServerResponseException) {
+//            println("Error: ${e.response.status.description}")
+//            emptyList()
+//        } catch (e: Exception) {
+//            println("Error: ${e.message}")
+//            emptyList()
+            //       }
+
     }
 }
