@@ -171,7 +171,7 @@ fun loadTabletEditProfile() {
                     .padding(horizontal = 60.dp)
             )
 
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             Button(
                 onClick = { /* Handle login button click */ },
@@ -188,8 +188,24 @@ fun loadTabletEditProfile() {
                     fontWeight = FontWeight.Bold
                 )
             }
-            Spacer(modifier = Modifier.height(250.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
+            Button(
+                onClick = { /* Handle login button click */ },
+                colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
+                shape = RoundedCornerShape(20.dp),
+                modifier = Modifier
+                    .size(width = 450.dp,height = 65.dp)
+                    .align(Alignment.CenterHorizontally)
+            ) {
+                Text(
+                    text = if (navigationState.lokalization) "Vymazať profil" else "Delete profile",
+                    color = Color(0xFFE4E4E4),
+                    fontSize = 25.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+            Spacer(modifier = Modifier.height(250.dp))
         }
     }
 }

@@ -185,6 +185,8 @@ fun loadMobileEditProfile() {
                     fontWeight = FontWeight.Bold
                 )
             }
+            Spacer(modifier = Modifier.height(16.dp))
+
             Button(
                 onClick = { /* Handle login button click */ },
                 colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),

@@ -41,6 +41,17 @@ import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 
+@Composable
+fun mobile_tablet(context: Any?,screenWidth: kotlin.Int){
+    if (screenWidth<1500){
+        menu_mobile(context)
+    }
+    else{
+        menu_tablet(context)
+    }
+}
+
+
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview
