@@ -11,8 +11,6 @@ import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Menu
@@ -207,7 +205,7 @@ fun menu_tablet(context: Any?) {
                 loadTabletGpsPlaces()
             }
             AnimatedVisibility(navigationState.editProfile) {
-                loadTabletEditProfile()
+                loadTabletEditProfile(context)
             }
             AnimatedVisibility(navigationState.settings) {
                loadTabletSettings(context)
