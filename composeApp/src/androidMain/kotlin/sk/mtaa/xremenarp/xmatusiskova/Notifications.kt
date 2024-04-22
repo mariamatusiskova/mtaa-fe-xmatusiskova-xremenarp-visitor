@@ -7,6 +7,10 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import android.os.Handler
 import android.os.Looper
+import android.app.AlertDialog
+import android.content.Intent
+import android.net.Uri
+import androidx.core.app.NotificationManagerCompat
 
 fun showNotification(context: Context, title: String,message: String, id: Int) {
     val channelId = "visitor"
@@ -41,4 +45,3 @@ fun scheduleNotifications(context: Context) {
     }
     handler.postDelayed(notificationRunnable, delay)
 }
-
