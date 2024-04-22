@@ -88,7 +88,7 @@ fun menu_mobile(context: Any?) {
                 loadMobileEditProfile(context)
             }
             AnimatedVisibility(navigationState.settings) {
-                loadMobileSettings()
+                loadMobileSettings(context)
             }
             AnimatedVisibility(navigationState.category) {
                 loadMobileCategory()
@@ -210,7 +210,7 @@ fun menu_tablet(context: Any?) {
                 loadTabletEditProfile()
             }
             AnimatedVisibility(navigationState.settings) {
-               loadTabletSettings()
+               loadTabletSettings(context)
             }
             AnimatedVisibility(navigationState.category) {
                 loadTabletCategory()

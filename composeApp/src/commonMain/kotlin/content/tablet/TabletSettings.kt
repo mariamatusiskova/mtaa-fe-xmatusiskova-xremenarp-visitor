@@ -1,5 +1,6 @@
 package content.tablet
 
+import TokenManagerProvider
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -33,7 +34,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview
-fun loadTabletSettings() {
+fun loadTabletSettings(context: Any?) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -161,6 +162,30 @@ fun loadTabletSettings() {
             }
 
             Spacer(modifier = Modifier.height(20.dp))
+
+            Button(
+                onClick = {
+                    val tokenManager = context?.let { TokenManagerProvider.provideTokenManager(it) }
+                    if (tokenManager != null) {
+                        tokenManager.clearJwtToken()
+                    }
+                },
+                colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
+                shape = RoundedCornerShape(20.dp),
+                modifier = Modifier
+                    .size(width = 250.dp, height = 35.dp)
+                    .align(Alignment.CenterHorizontally)
+            ) {
+                Text(
+                    text = if (navigationState.lokalization) "Odhlásiť" else "Log out",
+                    color = Color(0xFFE4E4E4),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+
         }
     }
 }
