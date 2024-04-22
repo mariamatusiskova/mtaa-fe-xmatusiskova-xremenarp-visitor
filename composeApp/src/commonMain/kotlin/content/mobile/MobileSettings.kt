@@ -111,6 +111,26 @@ fun loadMobileSettings(context: Any?) {
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
+                        text = if (navigationState.lokalization) "Kontrast" else "Contrast",
+                        color = Color(0xFFE4E4E4),
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(start = 16.dp)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Switch(
+                        checked = navigationState.contrast,
+                        onCheckedChange = { navigationState.contrast = !navigationState.contrast },
+                        modifier = Modifier.align(Alignment.CenterVertically)
+                    )
+                }
+            }
+            Box(
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
                         text = if (navigationState.lokalization) "SK" else "EN",
                         color = Color(0xFFE4E4E4),
                         fontSize = 16.sp,

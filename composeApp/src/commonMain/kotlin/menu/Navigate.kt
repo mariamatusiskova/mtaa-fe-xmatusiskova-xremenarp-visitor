@@ -18,6 +18,7 @@ class NavigationState {
     var darkmode by mutableStateOf(false)
     var notifications by mutableStateOf(true)
     var lokalization by mutableStateOf(true)
+    var contrast by mutableStateOf(false)
 }
 
 val navigationState = NavigationState()
