@@ -1,7 +1,5 @@
 
 import androidx.compose.runtime.Composable
-import menu.menu_mobile
-import menu.menu_tablet
 import menu.mobile_tablet
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview

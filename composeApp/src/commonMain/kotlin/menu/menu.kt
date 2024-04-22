@@ -1,6 +1,7 @@
 package menu
 
 
+import TokenManagerProvider
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -17,6 +18,7 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,6 +37,7 @@ import content.tablet.loadTabletEditProfile
 import content.tablet.loadTabletFavouritePlaces
 import content.tablet.loadTabletGpsPlaces
 import content.tablet.loadTabletSettings
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -54,6 +57,31 @@ fun mobile_tablet(context: Any?,screenWidth: kotlin.Int){
 @Composable
 @Preview
 fun menu_mobile(context: Any?) {
+
+    val scope = rememberCoroutineScope()
+
+    val tokenManager = context?.let { TokenManagerProvider.provideTokenManager(it) }
+    var token = ""
+    if (tokenManager != null) {
+        tokenManager.getJwtToken()
+    }
+
+    if (token.isNotBlank()) {
+        scope.launch {
+            navigationState.login = false
+            navigationState.signup = false
+            navigationState.resetPassword = false
+            navigationState.allPlaces = true
+            navigationState.favouritePlaces = false
+            navigationState.gpsPlaces = false
+            navigationState.editProfile = false
+            navigationState.settings = false
+            navigationState.category = false
+            navigationState.darkmode = false
+            navigationState.notifications = false
+            navigationState.lokalization = false
+        }
+    }
 
     Box(
         modifier = Modifier
@@ -169,13 +197,37 @@ fun menu_mobile(context: Any?) {
                 }
             )
         }
-
     }
 }
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview
 fun menu_tablet(context: Any?) {
+
+    val scope = rememberCoroutineScope()
+
+    val tokenManager = context?.let { TokenManagerProvider.provideTokenManager(it) }
+    var token = ""
+    if (tokenManager != null) {
+        tokenManager.getJwtToken()
+    }
+
+    if (token.isNotBlank()) {
+        scope.launch {
+            navigationState.login = false
+            navigationState.signup = false
+            navigationState.resetPassword = false
+            navigationState.allPlaces = true
+            navigationState.favouritePlaces = false
+            navigationState.gpsPlaces = false
+            navigationState.editProfile = false
+            navigationState.settings = false
+            navigationState.category = false
+            navigationState.darkmode = false
+            navigationState.notifications = false
+            navigationState.lokalization = false
+        }
+    }
 
     Box(
         modifier = Modifier
