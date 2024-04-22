@@ -48,15 +48,6 @@ fun loadTabletAllPlaces(context: Any?) {
         placesState.value = places
     }
 
-    scope.launch {
-        val places = tokenManager?.let { it1 ->
-            client.apiGetAllPlaces(
-                it1
-            )
-        }
-        placesState.value = places
-    }
-
     LazyColumn {
         // Use placesState.value to get the list of places
         itemsIndexed(placesState.value.orEmpty()) { index, place ->
