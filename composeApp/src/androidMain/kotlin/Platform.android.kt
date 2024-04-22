@@ -10,3 +10,17 @@ class AndroidPlatform : Platform {
 }
 
 actual fun getPlatform(): Platform = AndroidPlatform()
+actual class TokenManager {
+    actual fun saveJwtToken(token: String) {
+    }
+
+    actual fun getJwtToken(): String? {
+        TODO("Not yet implemented")
+    }
+
+    actual fun clearJwtToken() {
+    }
+}
+
+actual fun saveJwtTokenAfterLogin(token: String) {
+}

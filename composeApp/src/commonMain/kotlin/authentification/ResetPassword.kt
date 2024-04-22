@@ -1,7 +1,5 @@
 package authentification
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,7 +16,6 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.TextField
@@ -39,11 +36,9 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import menu.navigationState
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import visitor.composeapp.generated.resources.Res
-import visitor.composeapp.generated.resources.logo
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
@@ -73,7 +68,17 @@ fun loadResetPassword() {
         )
 
         TextButton(
-            onClick = { /* Handle login button click */ },
+            onClick = {
+                navigationState.settings = false
+                navigationState.allPlaces = false
+                navigationState.editProfile = false
+                navigationState.gpsPlaces = false
+                navigationState.favouritePlaces = false
+                navigationState.category = false
+                navigationState.resetPassword = false
+                navigationState.signup = false
+                navigationState.login = true
+            },
             modifier = Modifier
                 .padding(top = 20.dp, end = 16.dp)
                 .align(Alignment.TopEnd)
@@ -193,7 +198,17 @@ fun loadResetPassword() {
             Spacer(modifier = Modifier.height(40.dp))
 
             Button(
-                onClick = { /* Handle login button click */ },
+                onClick = {
+                    navigationState.settings = false
+                    navigationState.allPlaces = false
+                    navigationState.editProfile = false
+                    navigationState.gpsPlaces = false
+                    navigationState.favouritePlaces = false
+                    navigationState.category = false
+                    navigationState.resetPassword = false
+                    navigationState.signup = false
+                    navigationState.login = true
+                },
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier

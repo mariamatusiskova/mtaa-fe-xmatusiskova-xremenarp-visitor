@@ -67,15 +67,6 @@ import visitor.composeapp.generated.resources.logo
 @Preview
 fun menu_mobile() {
 
-    var signup by remember { mutableStateOf(false) }
-    var login by remember { mutableStateOf(false) }
-    var reset_password by remember { mutableStateOf(false) }
-    var all_places by remember { mutableStateOf(true) }
-    var favourite_places by remember { mutableStateOf(false) }
-    var gps_places by remember { mutableStateOf(false) }
-    var edit_profile by remember { mutableStateOf(false) }
-    var settings by remember { mutableStateOf(false) }
-    var category by remember { mutableStateOf(false) }
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -93,22 +84,16 @@ fun menu_mobile() {
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            AnimatedVisibility(login) {
+            AnimatedVisibility(navigationState.login) {
                 loadLoginScreen()
-//                onClick = { settings = !settings
-//                    all_places = false
-//                    edit_profile=false
-//                    gps_places=false
-//                    favourite_places = false
-//                    category = false }
             }
-            AnimatedVisibility(signup) {
+            AnimatedVisibility(navigationState.signup) {
                 loadSignupScreen()
             }
-            AnimatedVisibility(reset_password) {
+            AnimatedVisibility(navigationState.resetPassword) {
                 loadResetPassword()
             }
-            AnimatedVisibility(all_places) {
+            AnimatedVisibility(navigationState.allPlaces) {
                 LazyColumn{
                     items(1) {
                         Column (modifier = Modifier
@@ -139,7 +124,7 @@ fun menu_mobile() {
                     }
                 }
             }
-            AnimatedVisibility(favourite_places) {
+            AnimatedVisibility(navigationState.favouritePlaces) {
                 LazyColumn {
                     items(1) {
                         Column (modifier = Modifier
@@ -169,7 +154,7 @@ fun menu_mobile() {
                     }
                 }
             }
-            AnimatedVisibility(gps_places) {
+            AnimatedVisibility(navigationState.gpsPlaces) {
                 LazyColumn {
                     items(1) {
                         Column(
@@ -201,7 +186,7 @@ fun menu_mobile() {
                     }
                 }
             }
-            AnimatedVisibility(edit_profile) {
+            AnimatedVisibility(navigationState.editProfile) {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -359,7 +344,7 @@ fun menu_mobile() {
 
 
             }
-            AnimatedVisibility(settings) {
+            AnimatedVisibility(navigationState.settings) {
 
                 Box(
                     modifier = Modifier
@@ -491,7 +476,7 @@ fun menu_mobile() {
                     }
                 }
             }
-            AnimatedVisibility(category) {
+            AnimatedVisibility(navigationState.category) {
                 LazyColumn {
                     items(1) {
                         Column(
@@ -596,32 +581,44 @@ fun menu_mobile() {
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Home, contentDescription = "ALL") },
                 selected = false,
-                onClick = { all_places = !all_places
-                    edit_profile = false
-                    gps_places=false
-                    favourite_places=false
-                    category = false
-                    settings = false   }
+                onClick = { navigationState.allPlaces = !navigationState.allPlaces
+                    navigationState.editProfile = false
+                    navigationState.gpsPlaces=false
+                    navigationState.favouritePlaces=false
+                    navigationState.category = false
+                    navigationState.settings = false
+                    navigationState.resetPassword = false
+                    navigationState.signup = false
+                    navigationState.login = false
+                }
             )
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Person, contentDescription = "Person") },
                 selected = false,
-                onClick = { edit_profile = !edit_profile
-                    all_places = false
-                    gps_places=false
-                    favourite_places=false
-                    category = false
-                    settings = false   }
+                onClick = { navigationState.editProfile = !navigationState.editProfile
+                    navigationState.allPlaces = false
+                    navigationState.gpsPlaces=false
+                    navigationState.favouritePlaces=false
+                    navigationState.category = false
+                    navigationState.settings = false
+                    navigationState.resetPassword = false
+                    navigationState.signup = false
+                    navigationState.login = false
+                }
             )
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.LocationOn, contentDescription = "Location") },
                 selected = false,
-                onClick = { gps_places = !gps_places
-                    all_places = false
-                    edit_profile=false
-                    favourite_places=false
-                    category = false
-                    settings = false  }
+                onClick = { navigationState.gpsPlaces = !navigationState.gpsPlaces
+                    navigationState.allPlaces = false
+                    navigationState.editProfile=false
+                    navigationState.favouritePlaces=false
+                    navigationState.category = false
+                    navigationState.settings = false
+                    navigationState.resetPassword = false
+                    navigationState.signup = false
+                    navigationState.login = false
+                }
             )
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Add, contentDescription = "Add") },
@@ -631,32 +628,44 @@ fun menu_mobile() {
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Favorite, contentDescription = "Favorite") },
                 selected = false,
-                onClick = { favourite_places = !favourite_places
-                    all_places = false
-                    edit_profile=false
-                    gps_places=false
-                    category = false
-                    settings = false  }
+                onClick = { navigationState.favouritePlaces = !navigationState.favouritePlaces
+                    navigationState.allPlaces = false
+                    navigationState.editProfile=false
+                    navigationState.gpsPlaces=false
+                    navigationState.category = false
+                    navigationState.settings = false
+                    navigationState.resetPassword = false
+                    navigationState.signup = false
+                    navigationState.login = false
+                }
             )
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Menu, contentDescription = "CATEGORY") },
                 selected = false,
-                onClick = { category = !category
-                    all_places = false
-                    edit_profile=false
-                    gps_places=false
-                    favourite_places = false
-                    settings = false }
+                onClick = { navigationState.category = !navigationState.category
+                    navigationState.allPlaces = false
+                    navigationState.editProfile=false
+                    navigationState.gpsPlaces=false
+                    navigationState.favouritePlaces = false
+                    navigationState.settings = false
+                    navigationState.resetPassword = false
+                    navigationState.signup = false
+                    navigationState.login = false
+                }
             )
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Settings, contentDescription = "Settings") },
                 selected = false,
-                onClick = { settings = !settings
-                    all_places = false
-                    edit_profile=false
-                    gps_places=false
-                    favourite_places = false
-                    category = false }
+                onClick = { navigationState.settings = !navigationState.settings
+                    navigationState.allPlaces = false
+                    navigationState.editProfile=false
+                    navigationState.gpsPlaces=false
+                    navigationState.favouritePlaces = false
+                    navigationState.category = false
+                    navigationState.resetPassword = false
+                    navigationState.signup = false
+                    navigationState.login = false
+                }
             )
         }
 
@@ -666,12 +675,7 @@ fun menu_mobile() {
 @Composable
 @Preview
 fun menu_tablet() {
-    var all_places by remember { mutableStateOf(true) }
-    var favourite_places by remember { mutableStateOf(false) }
-    var gps_places by remember { mutableStateOf(false) }
-    var edit_profile by remember { mutableStateOf(false) }
-    var settings by remember { mutableStateOf(false) }
-    var category by remember { mutableStateOf(false) }
+
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -689,7 +693,7 @@ fun menu_tablet() {
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            AnimatedVisibility(all_places) {
+            AnimatedVisibility(navigationState.allPlaces) {
                 LazyColumn{
                     items(1) {
                         Column (modifier = Modifier
@@ -720,7 +724,7 @@ fun menu_tablet() {
                     }
                 }
             }
-            AnimatedVisibility(favourite_places) {
+            AnimatedVisibility(navigationState.favouritePlaces) {
                 LazyColumn {
                     items(1) {
                         Column (modifier = Modifier
@@ -750,7 +754,7 @@ fun menu_tablet() {
                     }
                 }
             }
-            AnimatedVisibility(gps_places) {
+            AnimatedVisibility(navigationState.gpsPlaces) {
                 LazyColumn {
                     items(1) {
                         Column(
@@ -782,7 +786,7 @@ fun menu_tablet() {
                     }
                 }
             }
-            AnimatedVisibility(edit_profile) {
+            AnimatedVisibility(navigationState.editProfile) {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -928,7 +932,7 @@ fun menu_tablet() {
 
 
             }
-            AnimatedVisibility(settings) {
+            AnimatedVisibility(navigationState.settings) {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -1059,7 +1063,7 @@ fun menu_tablet() {
                     }
                 }
             }
-            AnimatedVisibility(category) {
+            AnimatedVisibility(navigationState.category) {
                 LazyColumn {
                     items(1) {
                         Spacer(modifier = Modifier.height(25.dp))
@@ -1167,32 +1171,44 @@ fun menu_tablet() {
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Home, contentDescription = "ALL") },
                 selected = false,
-                onClick = { all_places = !all_places
-                    edit_profile = false
-                    gps_places=false
-                    favourite_places=false
-                    category = false
-                    settings = false   }
+                onClick = { navigationState.allPlaces = !navigationState.allPlaces
+                    navigationState.editProfile = false
+                    navigationState.gpsPlaces=false
+                    navigationState.favouritePlaces=false
+                    navigationState.category = false
+                    navigationState.settings = false
+                    navigationState.resetPassword = false
+                    navigationState.signup = false
+                    navigationState.login = false
+                }
             )
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Person, contentDescription = "Person") },
                 selected = false,
-                onClick = { edit_profile = !edit_profile
-                    all_places = false
-                    gps_places=false
-                    favourite_places=false
-                    category = false
-                    settings = false   }
+                onClick = { navigationState.editProfile = !navigationState.editProfile
+                    navigationState.allPlaces = false
+                    navigationState.gpsPlaces=false
+                    navigationState.favouritePlaces=false
+                    navigationState.category = false
+                    navigationState.settings = false
+                    navigationState.resetPassword = false
+                    navigationState.signup = false
+                    navigationState.login = false
+                }
             )
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.LocationOn, contentDescription = "Location") },
                 selected = false,
-                onClick = { gps_places = !gps_places
-                    all_places = false
-                    edit_profile=false
-                    favourite_places=false
-                    category = false
-                    settings = false  }
+                onClick = { navigationState.gpsPlaces = !navigationState.gpsPlaces
+                    navigationState.allPlaces = false
+                    navigationState.editProfile=false
+                    navigationState.favouritePlaces=false
+                    navigationState.category = false
+                    navigationState.settings = false
+                    navigationState.resetPassword = false
+                    navigationState.signup = false
+                    navigationState.login = false
+                }
             )
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Add, contentDescription = "Add") },
@@ -1202,32 +1218,44 @@ fun menu_tablet() {
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Favorite, contentDescription = "Favorite") },
                 selected = false,
-                onClick = { favourite_places = !favourite_places
-                    all_places = false
-                    edit_profile=false
-                    gps_places=false
-                    category = false
-                    settings = false  }
+                onClick = { navigationState.favouritePlaces = !navigationState.favouritePlaces
+                    navigationState.allPlaces = false
+                    navigationState.editProfile=false
+                    navigationState.gpsPlaces=false
+                    navigationState.category = false
+                    navigationState.settings = false
+                    navigationState.resetPassword = false
+                    navigationState.signup = false
+                    navigationState.login = false
+                }
             )
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Menu, contentDescription = "CATEGORY") },
                 selected = false,
-                onClick = { category = !category
-                    all_places = false
-                    edit_profile=false
-                    gps_places=false
-                    favourite_places = false
-                    settings = false }
+                onClick = { navigationState.category = !navigationState.category
+                    navigationState.allPlaces = false
+                    navigationState.editProfile=false
+                    navigationState.gpsPlaces=false
+                    navigationState.favouritePlaces = false
+                    navigationState.settings = false
+                    navigationState.resetPassword = false
+                    navigationState.signup = false
+                    navigationState.login = false
+                }
             )
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Settings, contentDescription = "Settings") },
                 selected = false,
-                onClick = { settings = !settings
-                    all_places = false
-                    edit_profile=false
-                    gps_places=false
-                    favourite_places = false
-                    category = false }
+                onClick = { navigationState.settings = !navigationState.settings
+                    navigationState.allPlaces = false
+                    navigationState.editProfile=false
+                    navigationState.gpsPlaces=false
+                    navigationState.favouritePlaces = false
+                    navigationState.category = false
+                    navigationState.resetPassword = false
+                    navigationState.signup = false
+                    navigationState.login = false
+                }
             )
         }
     }

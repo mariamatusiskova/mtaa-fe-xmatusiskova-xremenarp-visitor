@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.sp
 import endpoints.dto.requests.SignupRequest
 import getPlatform
 import kotlinx.coroutines.launch
+import menu.navigationState
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -57,7 +58,6 @@ fun loadSignupScreen() {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirm_password by remember { mutableStateOf("") }
-    var signUpMessage by remember { mutableStateOf("") }
 
     Box(
         modifier = Modifier
@@ -78,7 +78,17 @@ fun loadSignupScreen() {
         )
 
         TextButton(
-            onClick = { /* Handle login button click */ },
+            onClick = {
+                navigationState.settings = false
+                navigationState.allPlaces = false
+                navigationState.editProfile = false
+                navigationState.gpsPlaces = false
+                navigationState.favouritePlaces = false
+                navigationState.category = false
+                navigationState.resetPassword = false
+                navigationState.signup = false
+                navigationState.login = true
+            },
             modifier = Modifier
                 .padding(top = 20.dp, end = 16.dp)
                 .align(Alignment.TopEnd)
@@ -231,9 +241,18 @@ fun loadSignupScreen() {
             Button(
                 onClick = {
                         scope.launch {
-                            var signup = SignupRequest(username, email, password, confirm_password)
+                            val signup = SignupRequest(username, email, password, confirm_password)
                             client.postSignup(signup)
                         }
+                    navigationState.settings = false
+                    navigationState.allPlaces = false
+                    navigationState.editProfile = false
+                    navigationState.gpsPlaces = false
+                    navigationState.favouritePlaces = false
+                    navigationState.category = false
+                    navigationState.resetPassword = false
+                    navigationState.signup = false
+                    navigationState.login = true
                   },
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
                 shape = RoundedCornerShape(20.dp),
@@ -252,7 +271,17 @@ fun loadSignupScreen() {
             Spacer(modifier = Modifier.height(15.dp))
 
             TextButton(
-                onClick = { /* Handle login button click */ },
+                onClick = {
+                    navigationState.settings = false
+                    navigationState.allPlaces = false
+                    navigationState.editProfile = false
+                    navigationState.gpsPlaces = false
+                    navigationState.favouritePlaces = false
+                    navigationState.category = false
+                    navigationState.resetPassword = false
+                    navigationState.signup = false
+                    navigationState.login = true
+                },
                 modifier = Modifier
                     .align(Alignment.End)
                     .padding(end = 30.dp)
@@ -278,6 +307,4 @@ fun loadSignupScreen() {
 
         }
     }
-
-//    client.close()
 }
