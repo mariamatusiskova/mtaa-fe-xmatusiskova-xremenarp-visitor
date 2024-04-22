@@ -44,7 +44,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview
-fun menu_mobile() {
+fun menu_mobile(context: Any?) {
 
     Box(
         modifier = Modifier
@@ -56,7 +56,7 @@ fun menu_mobile() {
                 .fillMaxSize()
         ) {
             AnimatedVisibility(navigationState.login) {
-                loadLoginScreen()
+                loadLoginScreen(context)
             }
             AnimatedVisibility(navigationState.signup) {
                 loadSignupScreen()

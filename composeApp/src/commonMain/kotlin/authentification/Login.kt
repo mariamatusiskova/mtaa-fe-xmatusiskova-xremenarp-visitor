@@ -1,5 +1,6 @@
 package authentification
 
+import TokenManagerProvider
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -46,14 +47,13 @@ import menu.navigationState
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import saveJwtTokenAfterLogin
 import visitor.composeapp.generated.resources.Res
 import visitor.composeapp.generated.resources.logo
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview
-fun loadLoginScreen() {
+fun loadLoginScreen(context: Any?) {
 
     val scope = rememberCoroutineScope()
     val platform = getPlatform()
@@ -157,19 +157,21 @@ fun loadLoginScreen() {
                     scope.launch {
                         val login = LoginRequest(username, password)
                         val loginResponse = client.postLogin(login)
-                        loginResponse?.let {
-                            saveJwtTokenAfterLogin(it)
+                        loginResponse?.let { token ->
+                            saveJwtTokenAfterLogin(token, context)
+                            if (token.isNotEmpty()) {
+                                navigationState.settings = false
+                                navigationState.allPlaces = true
+                                navigationState.editProfile = false
+                                navigationState.gpsPlaces = false
+                                navigationState.favouritePlaces = false
+                                navigationState.category = false
+                                navigationState.resetPassword = false
+                                navigationState.signup = false
+                                navigationState.login = false
+                            }
                         }
                     }
-                    navigationState.settings = false
-                    navigationState.allPlaces = true
-                    navigationState.editProfile = false
-                    navigationState.gpsPlaces = false
-                    navigationState.favouritePlaces = false
-                    navigationState.category = false
-                    navigationState.resetPassword = false
-                    navigationState.signup = false
-                    navigationState.login = false
                 },
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
                 shape = RoundedCornerShape(20.dp),
@@ -237,3 +239,25 @@ fun loadLoginScreen() {
         }
     }
 }
+
+
+fun saveJwtTokenAfterLogin(token: String, context: Any?) {
+    val tokenManager = context?.let { TokenManagerProvider.provideTokenManager(it) }
+
+    if (tokenManager != null) {
+        tokenManager.saveJwtToken(token)
+    }
+}
+
+fun getJwtToken(context: Any?): String? {
+    val tokenManager = context?.let { TokenManagerProvider.provideTokenManager(it) }
+
+    return tokenManager?.getJwtToken()
+}
+
+fun clearJwtToken(context: Any?) {
+    val tokenManager = context?.let { TokenManagerProvider.provideTokenManager(it) }
+
+    tokenManager?.clearJwtToken()
+}
+

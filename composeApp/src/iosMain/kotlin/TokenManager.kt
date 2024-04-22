@@ -1,25 +1,27 @@
 import platform.Foundation.NSUserDefaults
 
-actual class TokenManager {
 
+// chatGPT
+class iOSTokenManager : TokenManager {
     private val userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    private val KEY_JWT_TOKEN = "jwtToken"
 
-    actual fun saveJwtToken(token: String) {
-        userDefaults.setObject(token, "jwtToken")
+    override fun saveJwtToken(token: String) {
+        userDefaults.setObject(token, KEY_JWT_TOKEN)
     }
 
-    actual fun getJwtToken(): String? {
-        return userDefaults.stringForKey("jwtToken")
+    override fun getJwtToken(): String? {
+        return userDefaults.stringForKey(KEY_JWT_TOKEN)
     }
 
-    actual fun clearJwtToken() {
-        userDefaults.removeObjectForKey("jwtToken")
+    override fun clearJwtToken() {
+        userDefaults.removeObjectForKey(KEY_JWT_TOKEN)
     }
 }
 
-
-actual fun saveJwtTokenAfterLogin(token: String) {
-    val userDefaults = NSUserDefaults.standardUserDefaults()
-    userDefaults.setObject(token, "jwtToken")
+actual object TokenManagerProvider {
+    actual fun provideTokenManager(context: Any): TokenManager {
+        return iOSTokenManager()
+    }
 }
-
+//
