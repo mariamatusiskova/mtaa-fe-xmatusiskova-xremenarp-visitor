@@ -39,12 +39,14 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import endpoints.dto.LoginRequest
+import endpoints.dto.requests.LoginRequest
 import getPlatform
 import kotlinx.coroutines.launch
+import menu.navigationState
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import saveJwtTokenAfterLogin
 import visitor.composeapp.generated.resources.Res
 import visitor.composeapp.generated.resources.logo
 
@@ -153,9 +155,21 @@ fun loadLoginScreen() {
             Button(
                 onClick = {
                     scope.launch {
-                        var login = LoginRequest(username, password)
-                        client.postLogin(login)
+                        val login = LoginRequest(username, password)
+                        val loginResponse = client.postLogin(login)
+                        loginResponse?.let {
+                            saveJwtTokenAfterLogin(it)
+                        }
                     }
+                    navigationState.settings = false
+                    navigationState.allPlaces = true
+                    navigationState.editProfile = false
+                    navigationState.gpsPlaces = false
+                    navigationState.favouritePlaces = false
+                    navigationState.category = false
+                    navigationState.resetPassword = false
+                    navigationState.signup = false
+                    navigationState.login = false
                 },
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA1A556)),
                 shape = RoundedCornerShape(20.dp),
@@ -172,7 +186,17 @@ fun loadLoginScreen() {
             }
 
             TextButton(
-                onClick = { /* Handle login button click */ },
+                onClick = {
+                    navigationState.settings = false
+                    navigationState.allPlaces = false
+                    navigationState.editProfile = false
+                    navigationState.gpsPlaces = false
+                    navigationState.favouritePlaces = false
+                    navigationState.category = false
+                    navigationState.resetPassword = true
+                    navigationState.signup = false
+                    navigationState.login = false
+                },
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
                 Text(
@@ -186,7 +210,17 @@ fun loadLoginScreen() {
             Spacer(modifier = Modifier.height(15.dp))
 
             OutlinedButton(
-                onClick = {},
+                onClick = {
+                    navigationState.settings = false
+                    navigationState.allPlaces = false
+                    navigationState.editProfile = false
+                    navigationState.gpsPlaces = false
+                    navigationState.favouritePlaces = false
+                    navigationState.category = false
+                    navigationState.resetPassword = false
+                    navigationState.signup = true
+                    navigationState.login = false
+                },
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),
                 border = BorderStroke(2.dp, Color(0xFFA1A556)),
                 shape = RoundedCornerShape(20.dp),

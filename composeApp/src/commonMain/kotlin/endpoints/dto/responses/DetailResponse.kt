@@ -1,4 +1,4 @@
-package endpoints.dto
+package endpoints.dto.responses
 
 import kotlinx.serialization.Serializable
 

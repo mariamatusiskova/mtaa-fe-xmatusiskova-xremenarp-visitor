@@ -6,3 +6,11 @@ interface Platform {
 }
 
 expect fun getPlatform(): Platform
+
+expect fun saveJwtTokenAfterLogin(token: String)
+
+expect class TokenManager {
+    fun saveJwtToken(token: String)
+    fun getJwtToken(): String?
+    fun clearJwtToken()
+}

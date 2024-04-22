@@ -1,8 +1,9 @@
 package endpoints
 
-import endpoints.dto.DetailResponse
-import endpoints.dto.LoginRequest
-import endpoints.dto.SignupRequest
+import endpoints.dto.requests.LoginRequest
+import endpoints.dto.requests.SignupRequest
+import endpoints.dto.responses.DetailResponse
+import endpoints.dto.responses.LoginResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.ClientRequestException
@@ -12,9 +13,11 @@ import io.ktor.client.request.get
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.client.statement.HttpResponse
+import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.json.Json
 
 class ApiServiceImpl(
     private val client: HttpClient
@@ -47,16 +50,20 @@ class ApiServiceImpl(
         }
     }
 
-    override suspend fun postLogin(loginRequest: LoginRequest): DetailResponse? {
+    override suspend fun postLogin(loginRequest: LoginRequest): String? {
         return try {
             runBlocking {
+
                 val response: HttpResponse = client.post(HttpRoutes.LOGIN_POST) {
                     contentType(ContentType.Application.Json)
                     setBody(loginRequest)
                 }
 
+                val json = response.bodyAsText()
+                val loginResponse = Json.decodeFromString<LoginResponse>(json)
+
                 client.close()
-                response.body<DetailResponse>()
+                loginResponse.jwtToken
             }
         } catch (e: RedirectResponseException) {
             println("Error: ${e.response.status.description}")
