@@ -46,16 +46,6 @@ fun loadMobileAllPlaces(context: Any?) {
             )
         }
         placesState.value = places
-
-        navigationState.settings = false
-        navigationState.allPlaces = true
-        navigationState.editProfile = false
-        navigationState.gpsPlaces = false
-        navigationState.favouritePlaces = false
-        navigationState.category = false
-        navigationState.resetPassword = false
-        navigationState.signup = false
-        navigationState.login = false
     }
 
     scope.launch {
