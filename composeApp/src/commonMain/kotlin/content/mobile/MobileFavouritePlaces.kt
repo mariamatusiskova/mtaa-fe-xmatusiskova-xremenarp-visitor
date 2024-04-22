@@ -37,7 +37,7 @@ fun loadMobileFavouritePlaces() {
 
                     Button(
                         onClick = { /* Handle login button click */ },
-                        colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
+                        colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.contrast) Color.Black else if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
                         shape = RoundedCornerShape(20.dp),
                         modifier = Modifier
                             .size(width = 250.dp, height = 35.dp)
@@ -45,7 +45,7 @@ fun loadMobileFavouritePlaces() {
                     ) {
                         Text(
                             text = x,
-                            color = Color(0xFFE4E4E4),
+                            color = if (navigationState.contrast) Color.White else Color(0xFFE4E4E4),
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
                         )

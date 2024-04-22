@@ -31,84 +31,84 @@ fun loadMobileCategory() {
             ) {
                 Button(
                     onClick = { /* Handle login button click */ },
-                    colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.contrast) Color.Black else if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
                     shape = RoundedCornerShape(20.dp),
                     modifier = Modifier
                         .padding(end = 16.dp, bottom = 8.dp)
                 ) {
                     Text(
                         text = if (navigationState.lokalization) "Jedlo" else "MEALS",
-                        color = Color(0xFFE4E4E4),
+                        color = if (navigationState.contrast) Color.White else Color(0xFFE4E4E4),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
                     )
                 }
                 Button(
                     onClick = { /* Handle login button click */ },
-                    colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.contrast) Color.Black else if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
                     shape = RoundedCornerShape(20.dp),
                     modifier = Modifier
                         .padding(end = 16.dp, bottom = 8.dp)
                 ) {
                     Text(
                         text = if (navigationState.lokalization) "Ubytovanie" else "ACCOMODATION",
-                        color = Color(0xFFE4E4E4),
+                        color = if (navigationState.contrast) Color.White else Color(0xFFE4E4E4),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
                     )
                 }
                 Button(
                     onClick = { /* Handle login button click */ },
-                    colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.contrast) Color.Black else if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
                     shape = RoundedCornerShape(20.dp),
                     modifier = Modifier
                         .padding(end = 16.dp, bottom = 8.dp)
                 ) {
                     Text(
                         text = if (navigationState.lokalization) "Šport" else "SPORT",
-                        color = Color(0xFFE4E4E4),
+                        color = if (navigationState.contrast) Color.White else Color(0xFFE4E4E4),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
                     )
                 }
                 Button(
                     onClick = { /* Handle login button click */ },
-                    colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.contrast) Color.Black else if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
                     shape = RoundedCornerShape(20.dp),
                     modifier = Modifier
                         .padding(end = 16.dp, bottom = 8.dp)
                 ) {
                     Text(
                         text = if (navigationState.lokalization) "Vychádzka" else "HIKING",
-                        color = Color(0xFFE4E4E4),
+                        color = if (navigationState.contrast) Color.White else Color(0xFFE4E4E4),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
                     )
                 }
                 Button(
                     onClick = { /* Handle login button click */ },
-                    colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.contrast) Color.Black else if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
                     shape = RoundedCornerShape(20.dp),
                     modifier = Modifier
                         .padding(end = 16.dp, bottom = 8.dp)
                 ) {
                     Text(
                         text = if (navigationState.lokalization) "Zábava" else "FUN",
-                        color = Color(0xFFE4E4E4),
+                        color = if (navigationState.contrast) Color.White else Color(0xFFE4E4E4),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
                     )
                 }
                 Button(
                     onClick = { /* Handle login button click */ },
-                    colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.contrast) Color.Black else if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
                     shape = RoundedCornerShape(20.dp),
                     modifier = Modifier
                         .padding(end = 16.dp, bottom = 8.dp)
                 ) {
                     Text(
                         text = if (navigationState.lokalization) "Udalosti" else "EVENTS",
-                        color = Color(0xFFE4E4E4),
+                        color = if (navigationState.contrast) Color.White else Color(0xFFE4E4E4),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
                     )

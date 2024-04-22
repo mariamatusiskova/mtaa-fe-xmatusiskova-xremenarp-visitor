@@ -39,7 +39,7 @@ fun loadMobileSettings(context: Any?) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = if (navigationState.darkmode) Color.Black else Color(0xFFA1A556))
+            .background(color = if (navigationState.contrast) Color.White else if (navigationState.darkmode) Color.Black else Color(0xFFA1A556))
     ) {
         Text(
             if (navigationState.lokalization) "Nastavenia" else "Settings",
@@ -47,7 +47,7 @@ fun loadMobileSettings(context: Any?) {
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Start,
             fontSize = 40.sp,
-            color = if (navigationState.darkmode) Color.White else Color.Black,
+            color = if (navigationState.contrast) Color.Black else if (navigationState.darkmode) Color.White else Color.Black,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 60.dp, start = 30.dp)
@@ -60,7 +60,7 @@ fun loadMobileSettings(context: Any?) {
                 .fillMaxSize()
                 .padding(top = 200.dp)
                 .background(
-                    color = if (navigationState.darkmode) Color.DarkGray else Color(0xFFBCBE9A),
+                    color = if (navigationState.contrast) Color.White else if (navigationState.darkmode) Color.DarkGray else Color(0xFFBCBE9A),
                     shape = RoundedCornerShape(topStart = 60.dp, topEnd = 60.dp)
                 ),
             verticalArrangement = Arrangement.Center
@@ -72,7 +72,7 @@ fun loadMobileSettings(context: Any?) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
                         text = if (navigationState.lokalization) "Notifikácie" else "Notifications",
-                        color = Color(0xFFE4E4E4),
+                        color = if (navigationState.contrast) Color.Black else Color(0xFFE4E4E4),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(start = 16.dp)
@@ -92,7 +92,7 @@ fun loadMobileSettings(context: Any?) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
                         text = if (navigationState.lokalization) "Tmavý režim" else "Darkmode",
-                        color = Color(0xFFE4E4E4),
+                        color = if (navigationState.contrast) Color.Black else Color(0xFFE4E4E4),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(start = 16.dp)
@@ -112,7 +112,7 @@ fun loadMobileSettings(context: Any?) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
                         text = if (navigationState.lokalization) "Kontrast" else "Contrast",
-                        color = Color(0xFFE4E4E4),
+                        color = if (navigationState.contrast) Color.Black else Color(0xFFE4E4E4),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(start = 16.dp)
@@ -132,7 +132,7 @@ fun loadMobileSettings(context: Any?) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
                         text = if (navigationState.lokalization) "SK" else "EN",
-                        color = Color(0xFFE4E4E4),
+                        color = if (navigationState.contrast) Color.Black else  Color(0xFFE4E4E4),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(start = 16.dp)
@@ -150,7 +150,7 @@ fun loadMobileSettings(context: Any?) {
 
             Button(
                 onClick = { /* Handle help and support button click */ },
-                colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
+                colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.contrast) Color.Black else if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier
                     .size(width = 250.dp, height = 35.dp)
@@ -168,7 +168,7 @@ fun loadMobileSettings(context: Any?) {
 
             Button(
                 onClick = { /* Handle about button click */ },
-                colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
+                colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.contrast) Color.Black else if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier
                     .size(width = 250.dp, height = 35.dp)
@@ -200,7 +200,7 @@ fun loadMobileSettings(context: Any?) {
                     navigationState.signup = false
                     navigationState.login = true
                 },
-                colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
+                colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.contrast) Color.Black else if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier
                     .size(width = 250.dp, height = 35.dp)
