@@ -15,6 +15,9 @@ class NavigationState {
     var editProfile by mutableStateOf(false)
     var settings by mutableStateOf(false)
     var category by mutableStateOf(false)
+    var darkmode by mutableStateOf(false)
+    var notifications by mutableStateOf(true)
+    var lokalization by mutableStateOf(true)
 }
 
 val navigationState = NavigationState()
