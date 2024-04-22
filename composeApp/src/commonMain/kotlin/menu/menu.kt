@@ -25,6 +25,9 @@ import androidx.compose.ui.graphics.Color
 import authentification.loadLoginScreen
 import authentification.loadResetPassword
 import authentification.loadSignupScreen
+import authentification.tabletloadLoginScreen
+import authentification.tabletloadResetPassword
+import authentification.tabletloadSignupScreen
 import content.mobile.loadMobileAllPlaces
 import content.mobile.loadMobileCategory
 import content.mobile.loadMobileEditProfile
@@ -239,13 +242,13 @@ fun menu_tablet(context: Any?) {
                 .fillMaxSize()
         ) {
             AnimatedVisibility(navigationState.login) {
-                loadLoginScreen(context)
+                tabletloadLoginScreen(context)
             }
             AnimatedVisibility(navigationState.signup) {
-                loadSignupScreen()
+                tabletloadSignupScreen()
             }
             AnimatedVisibility(navigationState.resetPassword) {
-                loadResetPassword()
+                tabletloadResetPassword()
             }
             AnimatedVisibility(navigationState.allPlaces) {
                loadTabletAllPlaces(context)
@@ -266,83 +269,86 @@ fun menu_tablet(context: Any?) {
                 loadTabletCategory()
             }
         }
-        // Bottom Navigation
-        BottomNavigation(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(alignment = Alignment.BottomCenter),
-            backgroundColor = Color.White
-        ) {
-            BottomNavigationItem(
-                icon = { Icon(Icons.Filled.Home, contentDescription = "ALL") },
-                selected = false,
-                onClick = { navigationState.allPlaces = !navigationState.allPlaces
-                    navigationState.editProfile = false
-                    navigationState.gpsPlaces=false
-                    navigationState.favouritePlaces=false
-                    navigationState.category = false
-                    navigationState.settings = false
-                    navigationState.resetPassword = false
-                    navigationState.signup = false
-                    navigationState.login = false
-                }
-            )
-            BottomNavigationItem(
-                icon = { Icon(Icons.Filled.Person, contentDescription = "Person") },
-                selected = false,
-                onClick = { navigationState.editProfile = !navigationState.editProfile
-                    navigationState.allPlaces = false
-                    navigationState.gpsPlaces=false
-                    navigationState.favouritePlaces=false
-                    navigationState.category = false
-                    navigationState.settings = false
-                    navigationState.resetPassword = false
-                    navigationState.signup = false
-                    navigationState.login = false
-                }
-            )
-            BottomNavigationItem(
-                icon = { Icon(Icons.Filled.LocationOn, contentDescription = "Location") },
-                selected = false,
-                onClick = { navigationState.gpsPlaces = !navigationState.gpsPlaces
-                    navigationState.allPlaces = false
-                    navigationState.editProfile=false
-                    navigationState.favouritePlaces=false
-                    navigationState.category = false
-                    navigationState.settings = false
-                    navigationState.resetPassword = false
-                    navigationState.signup = false
-                    navigationState.login = false
-                }
-            )
-            BottomNavigationItem(
-                icon = { Icon(Icons.Filled.Menu, contentDescription = "CATEGORY") },
-                selected = false,
-                onClick = { navigationState.category = !navigationState.category
-                    navigationState.allPlaces = false
-                    navigationState.editProfile=false
-                    navigationState.gpsPlaces=false
-                    navigationState.favouritePlaces = false
-                    navigationState.settings = false
-                    navigationState.resetPassword = false
-                    navigationState.signup = false
-                    navigationState.login = false
-                }
-            )
-            BottomNavigationItem(
-                icon = { Icon(Icons.Filled.Settings, contentDescription = "Settings") },
-                selected = false,
-                onClick = { navigationState.settings = !navigationState.settings
-                    navigationState.allPlaces = false
-                    navigationState.editProfile=false
-                    navigationState.gpsPlaces=false
-                    navigationState.favouritePlaces = false
-                    navigationState.category = false
-                    navigationState.resetPassword = false
-                    navigationState.signup = false
-                    navigationState.login = false
-                }
-            )
+        if (!(navigationState.signup or navigationState.login or navigationState.resetPassword)){
+            BottomNavigation(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(alignment = Alignment.BottomCenter),
+                backgroundColor = Color.White
+            ) {
+                BottomNavigationItem(
+                    icon = { Icon(Icons.Filled.Home, contentDescription = "ALL") },
+                    selected = false,
+                    onClick = { navigationState.allPlaces = !navigationState.allPlaces
+                        navigationState.editProfile = false
+                        navigationState.gpsPlaces=false
+                        navigationState.favouritePlaces=false
+                        navigationState.category = false
+                        navigationState.settings = false
+                        navigationState.resetPassword = false
+                        navigationState.signup = false
+                        navigationState.login = false
+                    }
+                )
+                BottomNavigationItem(
+                    icon = { Icon(Icons.Filled.Person, contentDescription = "Person") },
+                    selected = false,
+                    onClick = { navigationState.editProfile = !navigationState.editProfile
+                        navigationState.allPlaces = false
+                        navigationState.gpsPlaces=false
+                        navigationState.favouritePlaces=false
+                        navigationState.category = false
+                        navigationState.settings = false
+                        navigationState.resetPassword = false
+                        navigationState.signup = false
+                        navigationState.login = false
+                    }
+                )
+                BottomNavigationItem(
+                    icon = { Icon(Icons.Filled.LocationOn, contentDescription = "Location") },
+                    selected = false,
+                    onClick = { navigationState.gpsPlaces = !navigationState.gpsPlaces
+                        navigationState.allPlaces = false
+                        navigationState.editProfile=false
+                        navigationState.favouritePlaces=false
+                        navigationState.category = false
+                        navigationState.settings = false
+                        navigationState.resetPassword = false
+                        navigationState.signup = false
+                        navigationState.login = false
+                    }
+                )
+                BottomNavigationItem(
+                    icon = { Icon(Icons.Filled.Menu, contentDescription = "CATEGORY") },
+                    selected = false,
+                    onClick = { navigationState.category = !navigationState.category
+                        navigationState.allPlaces = false
+                        navigationState.editProfile=false
+                        navigationState.gpsPlaces=false
+                        navigationState.favouritePlaces = false
+                        navigationState.settings = false
+                        navigationState.resetPassword = false
+                        navigationState.signup = false
+                        navigationState.login = false
+                    }
+                )
+                BottomNavigationItem(
+                    icon = { Icon(Icons.Filled.Settings, contentDescription = "Settings") },
+                    selected = false,
+                    onClick = { navigationState.settings = !navigationState.settings
+                        navigationState.allPlaces = false
+                        navigationState.editProfile=false
+                        navigationState.gpsPlaces=false
+                        navigationState.favouritePlaces = false
+                        navigationState.category = false
+                        navigationState.resetPassword = false
+                        navigationState.signup = false
+                        navigationState.login = false
+                    }
+                )
+            }
         }
+
+
     }
 }

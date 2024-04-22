@@ -71,7 +71,7 @@ fun loadTabletEditProfile(context: Any?) {
 
         Image(
             modifier = Modifier
-                .size(width = 150.dp, height = 150.dp)
+                .size(width = 250.dp, height = 250.dp)
                 .padding(top = 35.dp)
                 .fillMaxSize(1f)
                 .align(Alignment.TopCenter),
@@ -82,7 +82,7 @@ fun loadTabletEditProfile(context: Any?) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 200.dp)
+                .padding(top = 300.dp)
                 .background(
                     color = if (navigationState.lokalization) Color.DarkGray else Color(0xFFBCBE9A),
                     shape = RoundedCornerShape(topStart = 60.dp, topEnd = 60.dp)
@@ -90,7 +90,7 @@ fun loadTabletEditProfile(context: Any?) {
             verticalArrangement = Arrangement.Center
         ) {
 
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(60.dp))
 
             var isMenuExpanded by remember { mutableStateOf(false) }
 
@@ -99,13 +99,13 @@ fun loadTabletEditProfile(context: Any?) {
                 colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier
-                    .size(width = 250.dp, height = 35.dp)
+                    .size(width = 450.dp, height = 65.dp)
                     .align(Alignment.CenterHorizontally)
             ) {
                 Text(
                     text = if (navigationState.lokalization) "Vyber možnosť" else "Select option",
                     color = Color(0xFFE4E4E4),
-                    fontSize = 16.sp,
+                    fontSize = 25.sp,
                     fontWeight = FontWeight.Bold
                 )
             }
@@ -209,7 +209,7 @@ fun loadTabletEditProfile(context: Any?) {
 
             if (selectedOption == "Password") {
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(30.dp))
 
                 TextField(
                     value = retype_password,
@@ -237,7 +237,7 @@ fun loadTabletEditProfile(context: Any?) {
                 )
             }
 
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(60.dp))
 
             Button(
                 onClick = {
@@ -273,18 +273,18 @@ fun loadTabletEditProfile(context: Any?) {
                 colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier
-                    .size(width = 250.dp, height = 50.dp)
+                    .size(width = 450.dp, height = 80.dp)
                     .align(Alignment.CenterHorizontally)
             ) {
                 Text(
                     text = buttonLabel,
                     color = Color(0xFFE4E4E4),
-                    fontSize = 16.sp,
+                    fontSize = 25.sp,
                     fontWeight = FontWeight.Bold
                 )
             }
 
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(30.dp))
 
             Button(
                 onClick = {
@@ -309,13 +309,13 @@ fun loadTabletEditProfile(context: Any?) {
                 colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier
-                    .size(width = 250.dp, height = 35.dp)
+                    .size(width = 450.dp, height = 65.dp)
                     .align(Alignment.CenterHorizontally)
             ) {
                 Text(
                     text = if (navigationState.lokalization) "Vymazať profil" else "Delete profile",
                     color = Color(0xFFE4E4E4),
-                    fontSize = 16.sp,
+                    fontSize = 25.sp,
                     fontWeight = FontWeight.Bold
                 )
             }

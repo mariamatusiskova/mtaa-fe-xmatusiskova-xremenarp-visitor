@@ -67,27 +67,27 @@ fun loadTabletAllPlaces(context: Any?) {
                     Text(
                         text = place.name_name,
                         color = Color(0xFFE4E4E4),
-                        fontSize = 16.sp,
+                        fontSize = 25.sp,
                         fontWeight = FontWeight.Bold
                     )
                     Text(
                         text = place.description,
                         color = Color(0xFFE4E4E4),
-                        fontSize = 14.sp,
+                        fontSize = 22.sp,
                         fontWeight = FontWeight.Normal,
                         modifier = Modifier.padding(top = 4.dp)
                     )
                     Text(
                         text = "Contact: ${place.contact}",
                         color = Color(0xFFE4E4E4),
-                        fontSize = 14.sp,
+                        fontSize = 22.sp,
                         fontWeight = FontWeight.Normal,
                         modifier = Modifier.padding(top = 4.dp)
                     )
                     Text(
                         text = "Address: ${place.address}",
                         color = Color(0xFFE4E4E4),
-                        fontSize = 14.sp,
+                        fontSize = 22.sp,
                         fontWeight = FontWeight.Normal,
                         modifier = Modifier.padding(top = 4.dp)
                     )
