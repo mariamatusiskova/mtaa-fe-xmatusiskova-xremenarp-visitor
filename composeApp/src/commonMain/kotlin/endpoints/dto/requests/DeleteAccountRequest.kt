@@ -1,4 +1,3 @@
 package endpoints.dto.requests
 
-class DeleteAccountRequest {
-}
+class DeleteAccountRequest()

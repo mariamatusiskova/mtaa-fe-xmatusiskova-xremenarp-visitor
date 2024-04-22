@@ -6,6 +6,8 @@ object HttpRoutes {
     //private const val API_BASE_URL = "http://10.10.40.110:8000" // on device (your IP address)
     const val SIGNUP_POST = "$API_BASE_URL/api/signup/"
     const val LOGIN_POST = "$API_BASE_URL/api/login/"
+    const val EDIT_PROFILE = "$API_BASE_URL/api/edit_profile/"
+    const val DELETE_ACCOUNT = "$API_BASE_URL/api/delete_account/"
     const val API_GET_ALL_PLACES = "$API_BASE_URL/api/get_all_places/"
     const val SERVER_GET_ALL_PLACES = "$API_BASE_URL/server/get_all_places/"
     const val PLACE = "$API_BASE_URL/api/place/"

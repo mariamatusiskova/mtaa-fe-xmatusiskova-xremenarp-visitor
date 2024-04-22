@@ -74,7 +74,7 @@ fun menu_mobile(context: Any?) {
                 loadMobileGpsPlaces()
             }
             AnimatedVisibility(navigationState.editProfile) {
-                loadMobileEditProfile()
+                loadMobileEditProfile(context)
             }
             AnimatedVisibility(navigationState.settings) {
                 loadMobileSettings()
