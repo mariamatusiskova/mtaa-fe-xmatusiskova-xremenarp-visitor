@@ -13,7 +13,7 @@ fun App(context: Any?) {
     //loadSignupScreen()
     //loadResetPassword()
     menu_mobile(context)
-    //menu_tablet()
+    //menu_tablet(context)
 }
 
 

@@ -185,7 +185,7 @@ fun menu_mobile(context: Any?) {
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview
-fun menu_tablet() {
+fun menu_tablet(context: Any?) {
 
     Box(
         modifier = Modifier
@@ -196,8 +196,17 @@ fun menu_tablet() {
             modifier = Modifier
                 .fillMaxSize()
         ) {
+            AnimatedVisibility(navigationState.login) {
+                loadLoginScreen(context)
+            }
+            AnimatedVisibility(navigationState.signup) {
+                loadSignupScreen()
+            }
+            AnimatedVisibility(navigationState.resetPassword) {
+                loadResetPassword()
+            }
             AnimatedVisibility(navigationState.allPlaces) {
-               loadTabletAllPlaces()
+               loadTabletAllPlaces(context)
             }
             AnimatedVisibility(navigationState.favouritePlaces) {
                 loadTabletFavouritePlaces()
