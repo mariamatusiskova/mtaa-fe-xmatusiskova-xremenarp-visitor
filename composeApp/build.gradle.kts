@@ -89,5 +89,7 @@ dependencies {
     implementation(libs.volley)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.firebase.messaging.ktx)
+    implementation(libs.play.services.location)
+    implementation(libs.androidx.appcompat)
 }
 
