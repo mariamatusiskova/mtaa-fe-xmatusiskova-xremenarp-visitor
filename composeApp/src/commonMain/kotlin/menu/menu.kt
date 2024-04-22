@@ -143,25 +143,6 @@ fun menu_mobile(context: Any?) {
                 }
             )
             BottomNavigationItem(
-                icon = { Icon(Icons.Filled.Add, contentDescription = "Add") },
-                selected = false,
-                onClick = { /* Handle notifications navigation */ }
-            )
-            BottomNavigationItem(
-                icon = { Icon(Icons.Filled.Favorite, contentDescription = "Favorite") },
-                selected = false,
-                onClick = { navigationState.favouritePlaces = !navigationState.favouritePlaces
-                    navigationState.allPlaces = false
-                    navigationState.editProfile=false
-                    navigationState.gpsPlaces=false
-                    navigationState.category = false
-                    navigationState.settings = false
-                    navigationState.resetPassword = false
-                    navigationState.signup = false
-                    navigationState.login = false
-                }
-            )
-            BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Menu, contentDescription = "CATEGORY") },
                 selected = false,
                 onClick = { navigationState.category = !navigationState.category
@@ -277,25 +258,6 @@ fun menu_tablet(context: Any?) {
                     navigationState.allPlaces = false
                     navigationState.editProfile=false
                     navigationState.favouritePlaces=false
-                    navigationState.category = false
-                    navigationState.settings = false
-                    navigationState.resetPassword = false
-                    navigationState.signup = false
-                    navigationState.login = false
-                }
-            )
-            BottomNavigationItem(
-                icon = { Icon(Icons.Filled.Add, contentDescription = "Add") },
-                selected = false,
-                onClick = { /* Handle notifications navigation */ }
-            )
-            BottomNavigationItem(
-                icon = { Icon(Icons.Filled.Favorite, contentDescription = "Favorite") },
-                selected = false,
-                onClick = { navigationState.favouritePlaces = !navigationState.favouritePlaces
-                    navigationState.allPlaces = false
-                    navigationState.editProfile=false
-                    navigationState.gpsPlaces=false
                     navigationState.category = false
                     navigationState.settings = false
                     navigationState.resetPassword = false

@@ -91,13 +91,7 @@ fun loadTabletAllPlaces(context: Any?) {
                         fontWeight = FontWeight.Normal,
                         modifier = Modifier.padding(top = 4.dp)
                     )
-                    Text(
-                        text = "Meals Available: ${place.meals}",
-                        color = Color(0xFFE4E4E4),
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Normal,
-                        modifier = Modifier.padding(top = 4.dp)
-                    )
+
                 }
             }
         }
