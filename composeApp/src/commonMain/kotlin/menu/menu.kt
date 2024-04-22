@@ -41,6 +41,17 @@ import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 
+@Composable
+fun mobile_tablet(context: Any?,screenWidth: kotlin.Int){
+    if (screenWidth<1500){
+        menu_mobile(context)
+    }
+    else{
+        menu_tablet(context)
+    }
+}
+
+
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview
@@ -124,25 +135,6 @@ fun menu_mobile(context: Any?) {
                     navigationState.allPlaces = false
                     navigationState.editProfile=false
                     navigationState.favouritePlaces=false
-                    navigationState.category = false
-                    navigationState.settings = false
-                    navigationState.resetPassword = false
-                    navigationState.signup = false
-                    navigationState.login = false
-                }
-            )
-            BottomNavigationItem(
-                icon = { Icon(Icons.Filled.Add, contentDescription = "Add") },
-                selected = false,
-                onClick = { /* Handle notifications navigation */ }
-            )
-            BottomNavigationItem(
-                icon = { Icon(Icons.Filled.Favorite, contentDescription = "Favorite") },
-                selected = false,
-                onClick = { navigationState.favouritePlaces = !navigationState.favouritePlaces
-                    navigationState.allPlaces = false
-                    navigationState.editProfile=false
-                    navigationState.gpsPlaces=false
                     navigationState.category = false
                     navigationState.settings = false
                     navigationState.resetPassword = false
@@ -266,25 +258,6 @@ fun menu_tablet(context: Any?) {
                     navigationState.allPlaces = false
                     navigationState.editProfile=false
                     navigationState.favouritePlaces=false
-                    navigationState.category = false
-                    navigationState.settings = false
-                    navigationState.resetPassword = false
-                    navigationState.signup = false
-                    navigationState.login = false
-                }
-            )
-            BottomNavigationItem(
-                icon = { Icon(Icons.Filled.Add, contentDescription = "Add") },
-                selected = false,
-                onClick = { /* Handle notifications navigation */ }
-            )
-            BottomNavigationItem(
-                icon = { Icon(Icons.Filled.Favorite, contentDescription = "Favorite") },
-                selected = false,
-                onClick = { navigationState.favouritePlaces = !navigationState.favouritePlaces
-                    navigationState.allPlaces = false
-                    navigationState.editProfile=false
-                    navigationState.gpsPlaces=false
                     navigationState.category = false
                     navigationState.settings = false
                     navigationState.resetPassword = false

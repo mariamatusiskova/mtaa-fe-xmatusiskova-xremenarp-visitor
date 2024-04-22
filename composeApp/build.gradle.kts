@@ -88,5 +88,6 @@ android {
 dependencies {
     implementation(libs.volley)
     implementation(libs.androidx.activity.ktx)
+    implementation(libs.firebase.messaging.ktx)
 }
 
