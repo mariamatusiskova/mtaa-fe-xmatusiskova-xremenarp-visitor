@@ -22,19 +22,17 @@ fun showNotification(context: Context, title: String,message: String, id: Int) {
         notificationManager.createNotificationChannel(channel)
     }
     notificationManager.notify(id, builder.build())
-    scheduleNotifications(context)
 }
 
 fun scheduleNotifications(context: Context) {
-    var id = 2
     val handler = Handler(Looper.getMainLooper())
-    val delay = 10000L
+    val delay = 43200000L
     val notificationRunnable = object : Runnable {
         override fun run() {
-            id++
-            showNotification(context, "10 sec nothification","10",id)
+            showNotification(context, "Visitor","Let's go somewhere!",3)
             handler.postDelayed(this, delay)
         }
     }
+    showNotification(context, "Visitor","Let's go somewhere!",3)
     handler.postDelayed(notificationRunnable, delay)
 }

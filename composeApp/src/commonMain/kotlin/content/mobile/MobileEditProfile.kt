@@ -96,7 +96,7 @@ fun loadMobileEditProfile(context: Any?) {
 
             Button(
                 onClick = { isMenuExpanded = true },
-                colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
+                colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.contrast) Color.Black else if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier
                     .size(width = 250.dp, height = 35.dp)
@@ -104,7 +104,7 @@ fun loadMobileEditProfile(context: Any?) {
             ) {
                 Text(
                     text = if (navigationState.lokalization) "Vyber možnosť" else "Select option",
-                    color = if (navigationState.contrast) Color.Black else Color(0xFFE4E4E4),
+                    color =  Color(0xFFE4E4E4),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
                 )
@@ -112,7 +112,9 @@ fun loadMobileEditProfile(context: Any?) {
 
             DropdownMenu(
                 expanded = isMenuExpanded,
-                onDismissRequest = { isMenuExpanded = false }
+                onDismissRequest = { isMenuExpanded = false },
+                modifier = Modifier
+                    .background(if (navigationState.contrast) Color.Black else if (navigationState.darkmode) Color.DarkGray else Color.White)
             ) {
                 DropdownMenuItem(onClick = {
                     selectedOption = "Username"
@@ -226,7 +228,7 @@ fun loadMobileEditProfile(context: Any?) {
                     visualTransformation = PasswordVisualTransformation(),
                     colors = TextFieldDefaults.outlinedTextFieldColors(
                         textColor = if (navigationState.contrast) Color.White else if (navigationState.darkmode) Color.White else Color.DarkGray,
-                        backgroundColor = if (navigationState.contrast) Color.White else if (navigationState.darkmode) Color.DarkGray else Color(0xFFBCBE9A),
+                        backgroundColor = if (navigationState.contrast) Color.Black else if (navigationState.darkmode) Color.DarkGray else Color(0xFFBCBE9A),
                         cursorColor = if (navigationState.contrast) Color.White else if (navigationState.darkmode) Color.White else Color.Gray,
                         focusedBorderColor = if (navigationState.contrast) Color.White else if (navigationState.darkmode) Color.White else Color.Gray,
                         unfocusedBorderColor = if (navigationState.contrast) Color.White else if (navigationState.darkmode) Color.White else Color.Gray
@@ -270,7 +272,7 @@ fun loadMobileEditProfile(context: Any?) {
                         }
                     }
                 },
-                colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
+                colors = ButtonDefaults.buttonColors(backgroundColor = if (navigationState.contrast) Color.Black else if (navigationState.darkmode) Color.Gray else Color(0xFFA1A556)),
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier
                     .size(width = 250.dp, height = 50.dp)
@@ -278,7 +280,7 @@ fun loadMobileEditProfile(context: Any?) {
             ) {
                 Text(
                     text = buttonLabel,
-                    color = if (navigationState.contrast) Color.Black else Color(0xFFE4E4E4),
+                    color = Color(0xFFE4E4E4),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
                 )
