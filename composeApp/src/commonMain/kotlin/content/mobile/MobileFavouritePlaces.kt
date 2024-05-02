@@ -1,3 +1,7 @@
+/**
+ * The mobile module for showing all favourite user's places -> screen with needed/related components.
+ */
+
 package content.mobile
 
 import androidx.compose.foundation.layout.Arrangement
@@ -22,6 +26,9 @@ import menu.navigationState
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+/**
+ * Cross-platform function to load and display a list of favorite places.
+ */
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview

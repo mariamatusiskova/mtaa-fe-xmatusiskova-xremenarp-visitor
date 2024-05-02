@@ -1,3 +1,7 @@
+/**
+ * The tablet module for login screen with needed/related components.
+ */
+
 package authentification
 
 import TokenManagerProvider
@@ -50,6 +54,12 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import visitor.composeapp.generated.resources.Res
 import visitor.composeapp.generated.resources.logo
 
+/**
+ * Composable function to load the login screen.
+ *
+ * @param[context] Any (instance) context object representing which OS is current.
+ * @sample authentification.tabletloadLoginScreen
+ */
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview

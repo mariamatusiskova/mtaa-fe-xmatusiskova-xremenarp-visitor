@@ -1,3 +1,7 @@
+/**
+ * The mobile module for edit profile screen with needed/related components.
+ */
+
 package content.mobile
 
 import TokenManagerProvider
@@ -48,6 +52,14 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import visitor.composeapp.generated.resources.Res
 import visitor.composeapp.generated.resources.logo
 
+
+/**
+ * Cross-platform or Composable function to load the mobile edit profile screen.
+ * User can edit only one data in the profile at once.
+ * He can choose from the drop down menu what he wants to change/update.
+ *
+ * @param[context] Any (instance) context for accessing resources from Android and iOS.
+ */
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview

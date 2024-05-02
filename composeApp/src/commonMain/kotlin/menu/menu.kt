@@ -1,3 +1,7 @@
+/**
+ * The module which handles all screens.
+ */
+
 package menu
 
 
@@ -44,7 +48,12 @@ import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-
+/**
+ * A cross-platform function to display the menu layout for mobile and tablet devices.
+ *
+ * @param[context] Any (instance), handles Android OS.
+ * @param[screenWidth] The width of the screen.
+ */
 @Composable
 fun mobile_tablet(context: Any?,screenWidth: kotlin.Int){
     if (screenWidth<1500){
@@ -55,7 +64,11 @@ fun mobile_tablet(context: Any?,screenWidth: kotlin.Int){
     }
 }
 
-
+/**
+ * A cross-platform function to display the menu layout for mobile devices.
+ *
+ * @param[context] Any (instance), handles Android OS.
+ */
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview
@@ -204,6 +217,12 @@ fun menu_mobile(context: Any?) {
         }
     }
 }
+
+/**
+ * A Composable function to display the menu layout for tablet devices.
+ *
+ * @param[context] Any (instance), handles Android OS.
+ */
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview

@@ -1,10 +1,19 @@
+/**
+ * The module which handles preview of the screens.
+ * Controlling visibility of different screens.
+ */
+
 package menu
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 
-
+/**
+ * Class responsible for managing the navigation state of the application.
+ * Each property represents a screen and its visibility status.
+ * The default screen with state true is Login page.
+ */
 class NavigationState {
     var signup by mutableStateOf(false)
     var login by mutableStateOf(true)
@@ -21,4 +30,8 @@ class NavigationState {
     var contrast by mutableStateOf(false)
 }
 
+/**
+ * Singleton instance of NavigationState to be used throughout the application.
+ * To handle screens visibility.
+ */
 val navigationState = NavigationState()

@@ -1,3 +1,7 @@
+/**
+ * The module to handle API requests on Android platform.
+ */
+
 package sk.mtaa.xremenarp.xmatusiskova
 
 import endpoints.ApiServiceImpl
@@ -18,8 +22,17 @@ import io.ktor.client.request.accept
 import kotlinx.serialization.ExperimentalSerializationApi
 
 // https://rhythamnegi.com/http-request-with-ktor-client-jetpack-compose-android-project-example
+/**
+ * Singleton object for handling API service on Android platform.
+ * It configures an HttpClient with necessary plugins and settings for making HTTP requests.
+ */
 object AndroidApi {
 
+    /**
+     * Implements [IApiService] suitable for Android platform.
+     *
+     * @return an instance of ApiService configured for Android.
+     */
     fun create(): IApiService {
         return ApiServiceImpl(
             client = HttpClient(Android) {

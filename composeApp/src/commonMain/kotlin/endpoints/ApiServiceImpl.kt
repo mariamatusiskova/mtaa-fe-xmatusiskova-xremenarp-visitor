@@ -1,3 +1,7 @@
+/**
+ * The module for API requests.
+ */
+
 package endpoints
 
 import TokenManager
@@ -29,10 +33,21 @@ import kotlinx.serialization.json.decodeFromJsonElement
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 
+/**
+ * Implementation of [IApiService] responsible for making API calls using HttpClient.
+ *
+ * @property[client] The HttpClient (instance) used for making HTTP requests.
+ */
 class ApiServiceImpl(
     private val client: HttpClient
 ) : IApiService {
 
+    /**
+     * Registers a new user with POST request.
+     *
+     * @param[signupRequest] data class which contains user signup data.
+     * @return A DetailResponse containing registration status and details, null if an error occurs.
+     */
     override suspend fun postSignup(signupRequest: SignupRequest): DetailResponse? {
         return try {
             runBlocking {
@@ -60,6 +75,12 @@ class ApiServiceImpl(
         }
     }
 
+    /**
+     * Logins user into app with his credentials by POST request.
+     *
+     * @param[loginRequest] data class which contains user login data.
+     * @return A String containing jwt token of user, null if an error occurs.
+     */
     override suspend fun postLogin(loginRequest: LoginRequest): String? {
         return try {
             runBlocking {
@@ -90,6 +111,12 @@ class ApiServiceImpl(
         }
     }
 
+    /**
+     * Retrieves all places from the server or client database by GET request.
+     *
+     * @param[tokenManager] TokenManager instance for authentication, where handles user's jwt token.
+     * @return A SList<GetAllPlacesResponse> containing all retrieved places.
+     */
     override suspend fun apiGetAllPlaces(tokenManager: TokenManager): List<GetAllPlacesResponse> {
         return try {
             runBlocking {
@@ -136,6 +163,13 @@ class ApiServiceImpl(
         }
     }
 
+    /**
+     * Updates the user's profile by sending a PATCH request.
+     *
+     * @param[tokenManager] TokenManager instance for authentication, where handles user's jwt token.
+     * @param[editProfileRequest] The data class containing the edited profile data.
+     * @return A DetailResponse indicating the result of the profile update, or null if an error occurs.
+     */
     override suspend fun patchEditProfile(tokenManager: TokenManager, editProfileRequest: Any): DetailResponse? {
         return try {
             runBlocking {
@@ -166,6 +200,12 @@ class ApiServiceImpl(
         }
     }
 
+    /**
+     * Deletes the user account by sending a DELETE request.
+     *
+     * @param[tokenManager] The TokenManager used to manage JWT tokens for authorization.
+     * @return A DetailResponse indicating the result of the account deletion, or null if an error occurs.
+     */
     override suspend fun deleteAccount(tokenManager: TokenManager): DetailResponse? {
         return try {
             runBlocking {

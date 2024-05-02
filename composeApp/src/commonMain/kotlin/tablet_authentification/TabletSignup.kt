@@ -1,3 +1,7 @@
+/**
+ * The tablet module for signup screen with needed/related components.
+ */
+
 package authentification
 
 import androidx.compose.foundation.background
@@ -45,6 +49,14 @@ import menu.navigationState
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+/**
+ * Cross-platform function to display signup screen to register user into app.
+ *
+ * User's input contains username, email, password and confirm password.
+ * The by button Signup will be send request into the system to register user.
+ *
+ * @sample authentification.tabletloadSignupScreen
+ */
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview

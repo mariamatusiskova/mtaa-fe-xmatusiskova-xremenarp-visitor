@@ -1,3 +1,7 @@
+/**
+ * The tablet module for showing places according to gps location of user -> screen with needed/related components.
+ */
+
 package content.tablet
 
 import androidx.compose.foundation.layout.Arrangement
@@ -22,6 +26,14 @@ import menu.navigationState
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+
+/**
+ * When the GPS is allowed by user, then the places can show according to his location.
+ * Or when he type from which area the places should load.
+ *
+ * Each place is represented by a button with custom styling based
+ * on the current navigation state (contrast, dark mode, light mode).
+ */
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview

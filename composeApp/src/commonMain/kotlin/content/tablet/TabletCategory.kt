@@ -1,3 +1,7 @@
+/**
+ * The tablet module for showing category options to user -> screen with needed/related components.
+ */
+
 package content.tablet
 
 import androidx.compose.foundation.layout.Column
@@ -21,6 +25,21 @@ import menu.navigationState
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+
+/**
+ * Loads the mobile category screen with buttons for various places.
+ *
+ * This screen is showing buttons with different categories of places.
+ * For example:
+ *  - meals
+ *  - accommodation
+ *  - sports
+ *  - hiking
+ *  - fun
+ *  - events
+ *
+ *  The design is implemented in light, dark and contrast mode.
+ */
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview

@@ -1,3 +1,7 @@
+/**
+ * The mobile module for login screen with needed/related components.
+ */
+
 package authentification
 
 import TokenManagerProvider
@@ -50,6 +54,12 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import visitor.composeapp.generated.resources.Res
 import visitor.composeapp.generated.resources.logo
 
+/**
+ * Composable function to load the login screen.
+ *
+ * @param[context] Any (instance) context object representing which OS is current.
+ * @sample authentification.loadLoginScreen
+ */
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview
@@ -241,6 +251,12 @@ fun loadLoginScreen(context: Any?) {
 }
 
 
+/**
+ * Saves the JWT token after login into the system memory.
+ *
+ * @param[token] The JWT token string.
+ * @param[context] Any context object.
+ */
 fun saveJwtTokenAfterLogin(token: String, context: Any?) {
     val tokenManager = context?.let { TokenManagerProvider.provideTokenManager(it) }
 
@@ -249,12 +265,25 @@ fun saveJwtTokenAfterLogin(token: String, context: Any?) {
     }
 }
 
+
+/**
+ * Retrieves the JWT token from the system memory.
+ *
+ * @param[context] Any (instance) context object.
+ * @return The JWT token string.
+ */
 fun getJwtToken(context: Any?): String? {
     val tokenManager = context?.let { TokenManagerProvider.provideTokenManager(it) }
 
     return tokenManager?.getJwtToken()
 }
 
+
+/**
+ * Clears the JWT token from the system memory.
+ *
+ * @param[context] Any (instance) context object.
+ */
 fun clearJwtToken(context: Any?) {
     val tokenManager = context?.let { TokenManagerProvider.provideTokenManager(it) }
 

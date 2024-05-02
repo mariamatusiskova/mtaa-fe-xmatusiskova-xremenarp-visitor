@@ -1,3 +1,7 @@
+/**
+ * The tablet module showing all places -> screen with needed/related components.
+ */
+
 package content.tablet
 
 import TokenManagerProvider
@@ -28,6 +32,13 @@ import menu.navigationState
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+
+/**
+ * Cross-platform function to load and display a list of places.
+ * This function fetches places data from an API endpoint using a provided token manager.
+ *
+ * @param[context] The context used to retrieve the token manager.
+ */
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview

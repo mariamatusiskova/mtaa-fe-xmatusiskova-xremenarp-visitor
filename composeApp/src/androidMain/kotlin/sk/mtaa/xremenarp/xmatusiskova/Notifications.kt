@@ -1,3 +1,6 @@
+/**
+ * The module which handles notifications of the app.
+ */
 package sk.mtaa.xremenarp.xmatusiskova
 
 import android.app.NotificationChannel
@@ -8,6 +11,14 @@ import androidx.core.app.NotificationCompat
 import android.os.Handler
 import android.os.Looper
 
+/**
+ * Shows notifications with message to notify user.
+ *
+ * @param[context] The context in which the notification should be shown.
+ * @param[title] The title of the notification.
+ * @param[message] The message content of the notification.
+ * @param[id] The ID of the notification.
+ */
 fun showNotification(context: Context, title: String,message: String, id: Int) {
     val builder = NotificationCompat.Builder(context, "Visitor")
         .setSmallIcon(R.drawable.logo)
@@ -24,6 +35,11 @@ fun showNotification(context: Context, title: String,message: String, id: Int) {
     notificationManager.notify(id, builder.build())
 }
 
+/**
+ * Schedules notifications to be shown periodically.
+ *
+ * @param[context] The context in which the notifications should be scheduled.
+ */
 fun scheduleNotifications(context: Context) {
     val handler = Handler(Looper.getMainLooper())
     val delay = 43200000L

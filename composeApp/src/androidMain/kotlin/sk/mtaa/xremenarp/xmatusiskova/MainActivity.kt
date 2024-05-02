@@ -1,3 +1,7 @@
+/**
+ * The module which handles components activity.
+ */
+
 package sk.mtaa.xremenarp.xmatusiskova
 
 import App
@@ -27,9 +31,18 @@ import java.util.*
 
 val screenWidth = 0
 
-
+/**
+ * Class responsible for the application components and lifecycle.
+ */
 class MainActivity : ComponentActivity() {
     lateinit var fusedLocationClient : FusedLocationProviderClient
+
+    /**
+     * Called when the activity is starting.
+     *
+     * @param[savedInstanceState] Saves data from the application when the app
+     *  is re-initialized ot shut down.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val screenWidth = getScreenWidth()
@@ -49,8 +62,9 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-
-
+    /**
+     * Requests location updates.
+     */
     @SuppressLint("MissingPermission")
     private fun requestLocationUpdates() {
         fusedLocationClient.lastLocation
@@ -69,6 +83,9 @@ class MainActivity : ComponentActivity() {
             }
     }
 
+    /**
+     * Retrieves the city name from the device location.
+     */
     @SuppressLint("MissingPermission")
     fun getCityNameFromLocation() {
         fusedLocationClient.lastLocation
@@ -89,6 +106,9 @@ class MainActivity : ComponentActivity() {
             }
     }
 
+    /**
+     * Handles the result of a permission request.
+     */
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
@@ -114,15 +134,18 @@ class MainActivity : ComponentActivity() {
         private const val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
     }
 
-
-
+    /**
+     * Pauses the activity.
+     */
     override fun onPause() {
         super.onPause()
         //showNotification(applicationContext, "Visitor","Didn't you find what you are looking for? Let's try it agan!",0)
         getCityNameFromLocation()
     }
 
-
+    /**
+     * Retrieves the screen width of the device.
+     */
     private fun getScreenWidth(): Int {
         val windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
         val displayMetrics = DisplayMetrics()
@@ -131,6 +154,9 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+/**
+ * Preview function for the main activity.
+ */
 @Preview
 @Composable
 fun AppAndroidPreview() {

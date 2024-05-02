@@ -1,3 +1,7 @@
+/**
+ * The tablet module for reset password screen with needed/related components.
+ */
+
 package authentification
 
 import androidx.compose.foundation.background
@@ -40,6 +44,16 @@ import menu.navigationState
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+/**
+ * Cross-platform function to load reset password screen when user chose this option.
+ *
+ * This screen allows the user to reset his password by entering their email,
+ * new password, and re-entering the new password for confirmation.
+ * In the BE section these data will be checked. If the email exists
+ * and the passwords are equal.
+ *
+ * @sample authentification.tabletloadResetPassword
+ */
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview

@@ -1,3 +1,7 @@
+/**
+ * The tablet module for settings screen with needed/related components.
+ */
+
 package content.tablet
 
 import TokenManagerProvider
@@ -31,6 +35,13 @@ import menu.navigationState
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+
+/**
+ * This screen allows users to adjust settings such as notifications, dark mode, contrast, or language.
+ *
+ * @param[context] Any (instance) The context used to access token manager for settings
+ * and logout button functionality.
+ */
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview
